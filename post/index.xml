@@ -2,43 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Quxiaowei</title>
-    <link>http://localhost:1313/post/</link>
+    <link>http://quxiaowe.github.com/post/</link>
     <description>Recent content in Posts on Quxiaowei</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 14 Nov 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>由巴黎恐怖袭击所想到的</title>
-      <link>http://localhost:1313/post/paris_terror_attack/</link>
-      <pubDate>Sat, 14 Nov 2015 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/post/paris_terror_attack/</guid>
-      <description>&lt;p&gt;这次巴黎恐怖袭击时间后，我在想，依照以往的舆论发展方向，不久就会出现这样一种说法：恐怖袭击发动者不是真正的穆斯林，真正的穆斯林是热爱和平的。这种言论通常是会获得拥有善意的听众正面的回应的。&lt;/p&gt;
-
-&lt;p&gt;但这种说法是否真的在道理上说的通呢？&lt;/p&gt;
-
-&lt;p&gt;主要有两个问题：&lt;/p&gt;
-
-&lt;p&gt;1.谁是真正的穆斯林？&lt;/p&gt;
-
-&lt;p&gt;在我宗教这种小白看来，无疑存在两种穆斯林：坏的穆斯林，不坏的穆斯林。两边无疑信奉《古兰经》和穆罕默德，两边都认为自己是真正的穆斯林，指责对方不是真正的穆斯林。显然不能指望着从任何一方的嘴中得到答案。大多数善良人们应该和我一样认同不坏的甚至的好的穆斯林了（注意我用的是「认同」）。那究竟是，真正的穆斯林恰好是「不坏」的那个？还是善意影响了我们的判断？很难在这个选择题上得到「客观」的答案。而我却早已给出「好」与「坏」的答案。指导我们作出选择的东西是道德，道德的优先级显然是高于宗教的。而本题的答案是，我们不关心谁是真正的这种问题。谁是坏的我们就要反对谁。&lt;/p&gt;
-
-&lt;p&gt;牵出宗教和道德的问题，总有人说宗教能够规范人的道德，就像我们之前已经基于道德对宗教作出「好」与「坏」的判断，可见道德是早就存在于我们的心里的。而宗教至于道德的作用，正如当代哲学家伯纳德 ·威廉姆斯的一句名言所述 ，是 「多此一举 」（摘自《我们时代的伦理学》）。在我看看来不仅仅是「多此一举」在我看来有时还会起到反作用（基督教历史上也不鲜见）。换句话说，假如宗教教授坏的道德，作为信众能够指责，退出嘛！这显然和某些宗教树立绝对权威是相矛盾而不被允许的。&lt;/p&gt;
-
-&lt;p&gt;2.真正的穆斯林是真实存在的吗？&lt;/p&gt;
-
-&lt;p&gt;在我看来真正的穆斯林并不存在，而只是人们脑中一个概念和善意地一厢情愿。宗教是存在于人们脑中的，每一个信众的行动构成这个宗教的。「好」与「坏」的两方都是遵循《古兰经》的，而显然坏的一方的行为与字面的教诲更为相符，我们都批判教条主义，而基于通一段文本，两种不同阐释我们是无法判断那种是「正宗」那种是「歪曲」的，这两种都是通过人脑加工过产物。我们之所以选择「好」同样也是我们脑中的 道德在起作用，而不是因为「好」的一方更「真正」。&lt;/p&gt;
-</description>
-    </item>
+    <lastBuildDate>Wed, 24 May 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://quxiaowe.github.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Bilibili 时评抓取脚本</title>
-      <link>http://localhost:1313/post/bilibili_script/</link>
-      <pubDate>Thu, 21 May 2015 00:00:00 +0000</pubDate>
+      <link>http://quxiaowe.github.com/post/bilibili_script/</link>
+      <pubDate>Wed, 24 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/bilibili_script/</guid>
+      <guid>http://quxiaowe.github.com/post/bilibili_script/</guid>
       <description>&lt;p&gt;周末写了个zsh脚本，从B站上下载《不能结婚的男人》，贴上代码。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;for i in {1..12}
@@ -56,6 +32,30 @@ do
 done
 rm -f buffer_list
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>由巴黎恐怖袭击所想到的</title>
+      <link>http://quxiaowe.github.com/post/paris_terror_attack/</link>
+      <pubDate>Sat, 14 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://quxiaowe.github.com/post/paris_terror_attack/</guid>
+      <description>&lt;p&gt;这次巴黎恐怖袭击时间后，我在想，依照以往的舆论发展方向，不久就会出现这样一种说法：恐怖袭击发动者不是真正的穆斯林，真正的穆斯林是热爱和平的。这种言论通常是会获得拥有善意的听众正面的回应的。&lt;/p&gt;
+
+&lt;p&gt;但这种说法是否真的在道理上说的通呢？&lt;/p&gt;
+
+&lt;p&gt;主要有两个问题：&lt;/p&gt;
+
+&lt;p&gt;1.谁是真正的穆斯林？&lt;/p&gt;
+
+&lt;p&gt;在我宗教这种小白看来，无疑存在两种穆斯林：坏的穆斯林，不坏的穆斯林。两边无疑信奉《古兰经》和穆罕默德，两边都认为自己是真正的穆斯林，指责对方不是真正的穆斯林。显然不能指望着从任何一方的嘴中得到答案。大多数善良人们应该和我一样认同不坏的甚至的好的穆斯林了（注意我用的是「认同」）。那究竟是，真正的穆斯林恰好是「不坏」的那个？还是善意影响了我们的判断？很难在这个选择题上得到「客观」的答案。而我却早已给出「好」与「坏」的答案。指导我们作出选择的东西是道德，道德的优先级显然是高于宗教的。而本题的答案是，我们不关心谁是真正的这种问题。谁是坏的我们就要反对谁。&lt;/p&gt;
+
+&lt;p&gt;牵出宗教和道德的问题，总有人说宗教能够规范人的道德，就像我们之前已经基于道德对宗教作出「好」与「坏」的判断，可见道德是早就存在于我们的心里的。而宗教至于道德的作用，正如当代哲学家伯纳德 ·威廉姆斯的一句名言所述 ，是 「多此一举 」（摘自《我们时代的伦理学》）。在我看看来不仅仅是「多此一举」在我看来有时还会起到反作用（基督教历史上也不鲜见）。换句话说，假如宗教教授坏的道德，作为信众能够指责，退出嘛！这显然和某些宗教树立绝对权威是相矛盾而不被允许的。&lt;/p&gt;
+
+&lt;p&gt;2.真正的穆斯林是真实存在的吗？&lt;/p&gt;
+
+&lt;p&gt;在我看来真正的穆斯林并不存在，而只是人们脑中一个概念和善意地一厢情愿。宗教是存在于人们脑中的，每一个信众的行动构成这个宗教的。「好」与「坏」的两方都是遵循《古兰经》的，而显然坏的一方的行为与字面的教诲更为相符，我们都批判教条主义，而基于通一段文本，两种不同阐释我们是无法判断那种是「正宗」那种是「歪曲」的，这两种都是通过人脑加工过产物。我们之所以选择「好」同样也是我们脑中的 道德在起作用，而不是因为「好」的一方更「真正」。&lt;/p&gt;
 </description>
     </item>
     
