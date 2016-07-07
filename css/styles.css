@@ -51,7 +51,7 @@ header.header {
     font-size: 20px;
 }
 header.post-header .post-title {
-	font-weight: bold;
+	/* font-weight: bold; */
 	font-size: 24px;
 }
 
@@ -68,7 +68,7 @@ p {
     margin-bottom: 10px;
 }
 
-article p {
+article#content p {
 	margin:1em 0;
 	line-height: 180%;
 }
@@ -198,7 +198,7 @@ code {
 
 html{
     height: 100%;
-    background-color: #ededed;
+	background-color: #ededed;
 }
 body {
     min-height: 110%;
