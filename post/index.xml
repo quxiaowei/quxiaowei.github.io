@@ -15,11 +15,11 @@
       <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/python_no_nested_anymore/</guid>
-      <description>&lt;p&gt;最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 &lt;a href=&#34;https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491&#34;&gt;[Gist]&lt;/a&gt;。却发现nested不见了，查了替代方案记下。&lt;/p&gt;
+      <description>&lt;p&gt;最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 &lt;a href=&#34;https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491&#34;&gt;(Gist)&lt;/a&gt;。却发现nested不见了，查了替代方案记下。&lt;/p&gt;
 
 &lt;p&gt;with 写法：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;with open(&#39;D:\\input.txt&#39;) as file1:
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;with open(&#39;D:\\input.txt&#39;) as file1:
     with open(&#39;D:\\output.txt&#39; &#39;w+&#39;) as file2:
         for line in file1.readline():
             file2.write(line+&#39;\n&#39;)
@@ -27,7 +27,7 @@
 
 &lt;p&gt;nested() 写法（!warning: 已经不可用了）：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;from contextlib import nested
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from contextlib import nested
 
 with (open(&#39;D:\\input.txt&#39;), open(&#39;D:\\output.txt&#39;, &#39;w+&#39;)) \
     as (file1, file2):
@@ -38,7 +38,7 @@ with (open(&#39;D:\\input.txt&#39;), open(&#39;D:\\output.txt&#39;, &#39;w+&#39;
 
 &lt;p&gt;新写法：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;from contextlib import ExitStack
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from contextlib import ExitStack
 
 with ExitStack() as stack:
     file1 = stack.enter_context(open(&#39;D:\\input.txt&#39;))
@@ -61,7 +61,7 @@ with ExitStack() as stack:
       <guid>https://quxiaowei.github.io/post/bilibili_script/</guid>
       <description>&lt;p&gt;周末写了个zsh脚本，从B站上下载《不能结婚的男人》，贴上代码。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;for i in {1..12}
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;for i in {1..12}
 do
     url=http://www.bilibili.com/video/av3794937/index_$i.html
     echo $url

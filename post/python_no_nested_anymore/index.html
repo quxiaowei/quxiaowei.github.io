@@ -13,13 +13,15 @@
         
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
 
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amatic+SC&text=Quxiaowei">
 <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto+Mono'>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/dracula.css">
+<script src="https://quxiaowei.github.io/script/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
     </head>
     <body>
@@ -34,14 +36,14 @@
 <section id="main">
     <header class="post-header">
       <p class="post-title"><a href="https://quxiaowei.github.io/post/python_no_nested_anymore/">Python 的 nested() 不见了 </a></p>
-      <p class="post-meta">14/7/2016 - 1 min </p>
+      <p class="post-meta">2016-07-14</p>
     </header>
     <article itemprop="articleBody" id="content">
-       <p>最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 <a href="https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491">[Gist]</a>。却发现nested不见了，查了替代方案记下。</p>
+       <p>最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 <a href="https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491">(Gist)</a>。却发现nested不见了，查了替代方案记下。</p>
 
 <p>with 写法：</p>
 
-<pre><code>with open('D:\\input.txt') as file1:
+<pre><code class="language-python">with open('D:\\input.txt') as file1:
     with open('D:\\output.txt' 'w+') as file2:
         for line in file1.readline():
             file2.write(line+'\n')
@@ -49,7 +51,7 @@
 
 <p>nested() 写法（!warning: 已经不可用了）：</p>
 
-<pre><code>from contextlib import nested
+<pre><code class="language-python">from contextlib import nested
 
 with (open('D:\\input.txt'), open('D:\\output.txt', 'w+')) \
     as (file1, file2):
@@ -60,7 +62,7 @@ with (open('D:\\input.txt'), open('D:\\output.txt', 'w+')) \
 
 <p>新写法：</p>
 
-<pre><code>from contextlib import ExitStack
+<pre><code class="language-python">from contextlib import ExitStack
 
 with ExitStack() as stack:
     file1 = stack.enter_context(open('D:\\input.txt'))
