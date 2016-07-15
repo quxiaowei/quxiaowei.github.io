@@ -6,11 +6,35 @@
     <description>Recent content on &lt;quxiaowei/&gt;</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 14 Jul 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jul 2016 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://quxiaowei.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Python 的 nested( ) 不见了</title>
+      <title>ffmpeg cheatsheet</title>
+      <link>https://quxiaowei.github.io/post/ffmpeg_cheatsheet/</link>
+      <pubDate>Fri, 15 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://quxiaowei.github.io/post/ffmpeg_cheatsheet/</guid>
+      <description>&lt;p&gt;&lt;code&gt;-vcodec&lt;/code&gt; &lt;code&gt;-acodec&lt;/code&gt; 视屏，音频编码 &lt;code&gt;copy&lt;/code&gt; 拷贝源文件&lt;/p&gt;
+
+&lt;p&gt;合并视屏
+&lt;code&gt;ffmpeg -f concat -i buffer_list -c copy output.mkv&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;截取视频
+&lt;code&gt;ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4&lt;/code&gt;
+&lt;code&gt;-ss&lt;/code&gt; 开始时间 &lt;code&gt;-t&lt;/code&gt; 时长&lt;/p&gt;
+
+&lt;p&gt;缩小视屏
+&lt;code&gt;ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;裁剪视屏
+&lt;code&gt;ffmpeg -i a.mp4 -strict -2 -vf crop=1080:1080:0:420 out.mp4&lt;/code&gt;
+crop=width:height:x:y&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Python 的 `nested()` 不见了</title>
       <link>https://quxiaowei.github.io/post/python_no_nested_anymore/</link>
       <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
       
