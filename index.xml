@@ -17,19 +17,29 @@
       <guid>https://quxiaowei.github.io/post/ffmpeg_cheatsheet/</guid>
       <description>&lt;p&gt;&lt;code&gt;-vcodec&lt;/code&gt; &lt;code&gt;-acodec&lt;/code&gt; 视屏，音频编码 &lt;code&gt;copy&lt;/code&gt; 拷贝源文件&lt;/p&gt;
 
-&lt;p&gt;合并视屏
-&lt;code&gt;ffmpeg -f concat -i buffer_list -c copy output.mkv&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;合并视屏&lt;/p&gt;
 
-&lt;p&gt;截取视频
-&lt;code&gt;ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4&lt;/code&gt;
-&lt;code&gt;-ss&lt;/code&gt; 开始时间 &lt;code&gt;-t&lt;/code&gt; 时长&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -f concat -i buffer_list -c copy output.mkv
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;缩小视屏
-&lt;code&gt;ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;截取视频&lt;/p&gt;
 
-&lt;p&gt;裁剪视屏
-&lt;code&gt;ffmpeg -i a.mp4 -strict -2 -vf crop=1080:1080:0:420 out.mp4&lt;/code&gt;
-crop=width:height:x:y&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;-ss&lt;/code&gt; 开始时间 &lt;code&gt;-t&lt;/code&gt; 时长&lt;/p&gt;
+
+&lt;p&gt;缩小视屏&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;裁剪视屏&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;crop=width:height:x:y&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     

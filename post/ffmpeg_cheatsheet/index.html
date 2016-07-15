@@ -41,19 +41,29 @@
     <article itemprop="articleBody" id="content">
        <p><code>-vcodec</code> <code>-acodec</code> 视屏，音频编码 <code>copy</code> 拷贝源文件</p>
 
-<p>合并视屏
-<code>ffmpeg -f concat -i buffer_list -c copy output.mkv</code></p>
+<p>合并视屏</p>
 
-<p>截取视频
-<code>ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4</code>
-<code>-ss</code> 开始时间 <code>-t</code> 时长</p>
+<pre><code class="language-bash">ffmpeg -f concat -i buffer_list -c copy output.mkv
+</code></pre>
 
-<p>缩小视屏
-<code>ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4</code></p>
+<p>截取视频</p>
 
-<p>裁剪视屏
-<code>ffmpeg -i a.mp4 -strict -2 -vf crop=1080:1080:0:420 out.mp4</code>
-crop=width:height:x:y</p>
+<pre><code class="language-bash">ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4
+</code></pre>
+
+<p><code>-ss</code> 开始时间 <code>-t</code> 时长</p>
+
+<p>缩小视屏</p>
+
+<pre><code class="language-bash">ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4
+</code></pre>
+
+<p>裁剪视屏</p>
+
+<pre><code class="language-bash">ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4
+</code></pre>
+
+<p><code>crop=width:height:x:y</code></p>
 
 <p>『 終 』</p>
     </article>

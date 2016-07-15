@@ -198,10 +198,17 @@ pre {
 code {
     font-family: "Roboto Mono";
     font-size: 12px;
-	line-height: 180%;
-    color:#62F591;
 }
 
+pre code{
+	line-height: 180%;
+    color:white; /*#62F591;*/
+}
+
+p code{
+	font-size:14px;
+	color:black;
+}
 /* general background styling */
 
 * { padding: 0; margin: 0; }
