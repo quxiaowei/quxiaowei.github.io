@@ -35,13 +35,13 @@
 
 <section id="main">
     <header class="post-header">
-      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_no_nested_anymore/">Python 的 `nested()` 不见了 </a></p>
+      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_no_nested_anymore/">Python 的 nested() 不见了 </a></p>
       <p class="post-meta">2016-07-14</p>
     </header>
     <article itemprop="articleBody" id="content">
-       <p>最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 <a href="https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491">(Gist)</a>。却发现nested不见了，查了替代方案记下。</p>
+       <p>最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 <a href="https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491">(Gist)</a>。却发现<code>nested</code>不见了，查了替代方案记下。</p>
 
-<p>with 写法：</p>
+<p><code>with</code> 写法：</p>
 
 <pre><code class="language-python">with open('D:\\input.txt') as file1:
     with open('D:\\output.txt' 'w+') as file2:
@@ -49,7 +49,7 @@
             file2.write(line+'\n')
 </code></pre>
 
-<p>nested( ) 写法（caveat: 已经不可用了）：</p>
+<p><code>nested()</code> 写法（<code>caveat</code>: 已经不可用了）：</p>
 
 <pre><code class="language-python">from contextlib import nested
 
@@ -71,7 +71,7 @@ with ExitStack() as stack:
         file2.write(line+'\n')
 </code></pre>
 
-<p>其实对于一两个资源来说，直接用nested-with的语法写起来还行，用ExitStack看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。</p>
+<p>其实对于一两个资源来说，直接用nested-with的语法写起来还行，用ExitStack看起来就有点啰嗦了。对于多个资源来说，用<code>ExitStack</code> + <code>list comprehence</code>写起来倒也不麻烦。</p>
 
 <p>『 終 』</p>
     </article>
