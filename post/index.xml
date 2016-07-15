@@ -10,7 +10,7 @@
     <atom:link href="https://quxiaowei.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Python 的 nested() 不见了</title>
+      <title>Python 的 nested( ) 不见了</title>
       <link>https://quxiaowei.github.io/post/python_no_nested_anymore/</link>
       <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
       
@@ -25,7 +25,7 @@
             file2.write(line+&#39;\n&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;nested() 写法（!warning: 已经不可用了）：&lt;/p&gt;
+&lt;p&gt;nested( ) 写法（caveat: 已经不可用了）：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from contextlib import nested
 
@@ -48,8 +48,6 @@ with ExitStack() as stack:
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;其实对于一两个资源来说，直接用nested-with的语法写起来还行，用ExitStack看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。&lt;/p&gt;
-
-&lt;p&gt;&amp;mdash;(wan)&amp;mdash;&lt;/p&gt;
 </description>
     </item>
     

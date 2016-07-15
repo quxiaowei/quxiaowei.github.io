@@ -35,7 +35,7 @@
 
 <section id="main">
     <header class="post-header">
-      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_no_nested_anymore/">Python 的 nested() 不见了 </a></p>
+      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_no_nested_anymore/">Python 的 nested( ) 不见了 </a></p>
       <p class="post-meta">2016-07-14</p>
     </header>
     <article itemprop="articleBody" id="content">
@@ -49,7 +49,7 @@
             file2.write(line+'\n')
 </code></pre>
 
-<p>nested() 写法（!warning: 已经不可用了）：</p>
+<p>nested( ) 写法（caveat: 已经不可用了）：</p>
 
 <pre><code class="language-python">from contextlib import nested
 
@@ -73,8 +73,7 @@ with ExitStack() as stack:
 
 <p>其实对于一两个资源来说，直接用nested-with的语法写起来还行，用ExitStack看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。</p>
 
-<p>&mdash;(wan)&mdash;</p>
-
+<p>『 終 』</p>
     </article>
 </section>
 
