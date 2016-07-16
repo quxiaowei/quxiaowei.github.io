@@ -49,7 +49,7 @@
       <pubDate>Thu, 14 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/python_no_nested_anymore/</guid>
-      <description>&lt;p&gt;最近在和别的系统测试 Rest Web Service 的接口，用python写了单元测试脚本 &lt;a href=&#34;https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491&#34;&gt;(Gist)&lt;/a&gt;。却发现&lt;code&gt;nested&lt;/code&gt;不见了，查了替代方案记下。&lt;/p&gt;
+      <description>&lt;p&gt;最近在和别的系统测试 Rest Web Service 的接口，用 python 写了单元测试脚本 &lt;a href=&#34;https://gist.github.com/quxiaowei/5440de7c9e2e9b835e5b6225b040a491&#34;&gt;(Gist)&lt;/a&gt;。却发现&lt;code&gt;nested&lt;/code&gt;不见了，查了替代方案记下。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;with&lt;/code&gt; 写法：&lt;/p&gt;
 
@@ -81,7 +81,7 @@ with ExitStack() as stack:
         file2.write(line+&#39;\n&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;其实对于一两个资源来说，直接用nested-with的语法写起来还行，用ExitStack看起来就有点啰嗦了。对于多个资源来说，用&lt;code&gt;ExitStack&lt;/code&gt; + &lt;code&gt;list comprehence&lt;/code&gt;写起来倒也不麻烦。&lt;/p&gt;
+&lt;p&gt;其实对于一两个资源来说，直接用 nested-with 的语法写起来还行，用 ExitStack 看起来就有点啰嗦了。对于多个资源来说，用&lt;code&gt;ExitStack&lt;/code&gt; + &lt;code&gt;list comprehence&lt;/code&gt;写起来倒也不麻烦。&lt;/p&gt;
 </description>
     </item>
     
