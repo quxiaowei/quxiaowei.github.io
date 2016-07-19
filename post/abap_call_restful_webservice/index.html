@@ -59,40 +59,40 @@
 
 <p>abap 有许多发送 http GET 请求的方法。我用的是函数: <code>HTTP_GET</code></p>
 
-<pre><code class="language-abap">    DATA: status(3) TYPE c ,
-          url TYPE c LENGTH 200,
-          error TYPE string.
+<pre><code class="language-abap">DATA: status(3) TYPE c ,
+      url TYPE c LENGTH 200,
+      error TYPE string.
         
-    DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &quot; 返回内容
-          &quot; http header
-          response_headers TYPE TABLE OF text100 WITH HEADER LINE. 
+DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &quot; 返回内容
+      &quot; http header
+      response_headers TYPE TABLE OF text100 WITH HEADER LINE. 
         
-    url = |http://example/credit/{ p_datum }/{ p_customer }/{ p_company }| .
+url = |http://example/credit/{ p_datum }/{ p_customer }/{ p_company }| .
 
-    CALL FUNCTION 'HTTP_GET'
-      EXPORTING
-        absolute_uri          = url    &quot; url
-        timeout               = 1      &quot; 超时
-      IMPORTING
-        status_code           = status  &quot; 200 404等网页状态状态
-      TABLES
-        response_entity_body  = response
-        response_headers      = response_headers
-      EXCEPTIONS
-        connect_failed        = 1
-        timeout               = 2
-        internal_error        = 3
-        tcpip_error           = 4
-        data_error            = 5
-        system_failure        = 6
-        communication_failure = 7
-        OTHERS                = 8.
+CALL FUNCTION 'HTTP_GET'
+  EXPORTING
+    absolute_uri          = url    &quot; url
+    timeout               = 1      &quot; 超时
+  IMPORTING
+    status_code           = status  &quot; 200 404等网页状态状态
+  TABLES
+    response_entity_body  = response
+    response_headers      = response_headers
+  EXCEPTIONS
+    connect_failed        = 1
+    timeout               = 2
+    internal_error        = 3
+    tcpip_error           = 4
+    data_error            = 5
+    system_failure        = 6
+    communication_failure = 7
+    OTHERS                = 8.
 
-    IF sy-subrc EQ 0 AND status(1) EQ '2'.
-      &quot; 成功
-    ELSE.
-      &quot; 失败
-    ENDIF.
+IF sy-subrc EQ 0 AND status(1) EQ '2'.
+  &quot; 成功
+ELSE.
+  &quot; 失败
+ENDIF.
 </code></pre>
 
 <hr />
@@ -105,27 +105,27 @@
 <li><p>以常见的 UTF-8 为例，*Decode 代码*：</p></li>
 </ul>
 
-<pre><code class="language-abap">  DATA conv TYPE REF TO cl_abap_conv_in_ce.
-  DATA buffer TYPE xstring.
-  DATA v_text TYPE string.&quot;(100) TYPE c.
-  DATA v_text_t TYPE string.&quot;(100) TYPE c.
+<pre><code class="language-abap">DATA conv TYPE REF TO cl_abap_conv_in_ce.
+DATA buffer TYPE xstring.
+DATA v_text TYPE string.&quot;(100) TYPE c.
+DATA v_text_t TYPE string.&quot;(100) TYPE c.
   
-  conv = cl_abap_conv_in_ce=&gt;create( encoding = 'UTF-8' ).
-  LOOP AT response.
-    buffer = response.
-    TRY.
-        conv-&gt;convert(
-              EXPORTING input = buffer
-              IMPORTING data = v_text_t ).
-        CONCATENATE v_text v_text_t INTO v_text.
-      CATCH cx_sy_conversion_codepage 
-            cx_sy_codepage_converter_init 
-            cx_parameter_invalid_type.
-        p_subrc = 4.
-        p_message = '转码失败！'.
-        RETURN.
-    ENDTRY.
-  ENDLOOP.
+conv = cl_abap_conv_in_ce=&gt;create( encoding = 'UTF-8' ).
+LOOP AT response.
+  buffer = response.
+  TRY.
+      conv-&gt;convert(
+            EXPORTING input = buffer
+            IMPORTING data = v_text_t ).
+      CONCATENATE v_text v_text_t INTO v_text.
+    CATCH cx_sy_conversion_codepage 
+          cx_sy_codepage_converter_init 
+          cx_parameter_invalid_type.
+      p_subrc = 4.
+      p_message = '转码失败！'.
+      RETURN.
+  ENDTRY.
+ENDLOOP.
 </code></pre>
 
 <hr />
@@ -140,7 +140,7 @@
 
 <p><em>json 示例</em></p>
 
-<pre><code class="language-json">[
+<pre><code class="language-js">[
   {
     &quot;result&quot;:0.0122,
     &quot;errorCode&quot;:&quot;0&quot;,
