@@ -57,6 +57,7 @@ header.header {
 	font-weight:bold;
 	margin: 20px 0 0 0;
 	color:#333;
+	font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 header.post-header .post-title {
@@ -129,7 +130,7 @@ ul {
 
 ol {
     margin-left: 20px;
-    list-style-type: hiragana;
+    list-style-type: decimal;
 }
 
 /* blockquote styling */
@@ -150,7 +151,7 @@ hr {
 
     border: 0;
     height: 0;
-    border-top: 1px solid #000;
+    border-top: 1px solid #ccc;
 }
 
 /* table styling */
