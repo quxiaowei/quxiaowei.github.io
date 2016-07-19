@@ -31,6 +31,7 @@ header.header {
     font-size: 20px;
 	font-weight: normal;
 	color: #b8c0cc; 
+	letter-spacing: 0.2em;
 	/* font-weight: bold; */
 }
 
@@ -64,7 +65,7 @@ header.header {
 header.post-header .post-title {
 	font-weight: 700;
 	font-size: 20px;
-	letter-spacing : 0.1em;
+	letter-spacing : 0.2em;
 	color:black;
 	margin: 20px 0 0 0;
 }
@@ -163,6 +164,7 @@ hr {
 
 h2 {
 	font-size: 16px;
+	letter-spacing: 0.2em;
 }
 
 /* table styling */
