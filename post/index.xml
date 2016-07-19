@@ -22,7 +22,7 @@
 &lt;h2 id=&#34;关于rest&#34;&gt;关于REST&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;REST 是基于 http 的 web server 的架构，URL表示资源，http method: GET, POST, DELETE 等等表示发送，收取，删除的动作。我们做的是调用，就是从第三方接受资源，所以我们用 GET 就可以了。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;REST 是基于 http 的 web service 架构，URL表示资源，http method: GET, POST, DELETE 等等，表示发送，收取，删除的动作。我们做的是调用，即从第三方接受资源，所以我们用 GET 就可以了。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;SOAP 是另一种基于 http 的 web service 协议，不在本文范围内&lt;/p&gt;&lt;/li&gt;
 
@@ -33,7 +33,7 @@
 
 &lt;h2 id=&#34;http-调用&#34;&gt;http 调用&lt;/h2&gt;
 
-&lt;p&gt;abap 有许多发送 http 请求的方法。我用的是函数: &lt;code&gt;HTTP_GET&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;abap 有许多发送 http GET 请求的方法。我用的是函数: &lt;code&gt;HTTP_GET&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;    DATA: status(3) TYPE c ,
           url TYPE c LENGTH 200,
@@ -76,7 +76,7 @@
 &lt;h2 id=&#34;decode&#34;&gt;Decode&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;返回 http 内容的编码信息在 http 头里，可能与 sap 不兼容，需要转码&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;返回的内容可能与 sap 不兼容，编码信息在 http 头里，那么需要转码&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;以常见的 UTF-8 为例，*Decode 代码*：&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -109,9 +109,9 @@
 &lt;h2 id=&#34;json-映射到-abap&#34;&gt;json 映射到 ABAP&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Web Service 常见的返回内容格式有 xml 和 json&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Web Service 常见的返回内容格式有 xml 和 json 两种。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;本文以 json 为例，xml 的处理方法和json 大致相同，只是 “转换”的写法上不同。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;本文以 json 为例，xml 的处理方法和 json 大致相同，只是 “转换”的写法不同。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;em&gt;json 示例&lt;/em&gt;&lt;/p&gt;
@@ -147,7 +147,7 @@ DATA it_result TYPE TABLE OF ty_result.
 
 TRY
     CALL TRANSFORMATION z_test_json1 SOURCE XML v_text
-                       RESULT out = it_result.
+                                     RESULT out = it_result.
   CATCH cx_st_error cx_xslt_exception cx_transformation_error.
     &amp;quot; 解析json失败
 ENDTRY.
