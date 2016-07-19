@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on &lt;quxiaowei/&gt;</title>
+    <title>Posts on &lt;/&gt;</title>
     <link>https://quxiaowei.github.io/post/</link>
-    <description>Recent content in Posts on &lt;quxiaowei/&gt;</description>
+    <description>Recent content in Posts on &lt;/&gt;</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 19 Jul 2016 00:00:00 +0000</lastBuildDate>
@@ -21,13 +21,13 @@
 
 &lt;h2 id=&#34;关于rest&#34;&gt;关于REST&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;REST 是基于 http 的 web service 架构，URL表示资源，http method: GET, POST, DELETE 等等，表示发送，收取，删除的动作。我们做的是调用，即从第三方接受资源，所以我们用 GET 就可以了。&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;REST 是基于 http 的 web service 架构，URL表示资源，http method: GET, POST, DELETE 等等，表示发送，收取，删除的动作。我们做的是调用，即从第三方接受资源，所以我们用 GET 就可以了。&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;SOAP 是另一种基于 http 的 web service 协议，不在本文范围内&lt;/p&gt;&lt;/li&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SOAP 是另一种基于 http 的 web service 协议，不在本文范围内.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;li&gt;&lt;p&gt;以&lt;code&gt;http://example/credit/20160516/0000001880/1380&lt;/code&gt;为例，其中&lt;code&gt;20160516&lt;/code&gt;代表日期，&lt;code&gt;0000001880&lt;/code&gt;代表客户，&lt;code&gt;1380&lt;/code&gt;代表公司，这些是与 web service 发布者协商好，作为参数过去的。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;以&lt;code&gt;http://example/credit/20160516/0000001880/1380&lt;/code&gt;为例，其中&lt;code&gt;20160516&lt;/code&gt;代表日期，&lt;code&gt;0000001880&lt;/code&gt;代表客户，&lt;code&gt;1380&lt;/code&gt;代表公司，这些是与 web service 发布者协商好，作为参数过去的。&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -75,11 +75,7 @@ ENDIF.
 
 &lt;h2 id=&#34;decode&#34;&gt;Decode&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;返回的内容可能与 sap 不兼容，编码信息在 http 头里，那么需要转码&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;以常见的 UTF-8 为例，*Decode 代码*：&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;返回的内容可能与 sap 不兼容，编码信息在 http 头里，那么需要转码。以常见的 UTF-8 为例，&lt;strong&gt;Decode 代码&lt;/strong&gt;：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;DATA conv TYPE REF TO cl_abap_conv_in_ce.
 DATA buffer TYPE xstring.
@@ -108,13 +104,9 @@ ENDLOOP.
 
 &lt;h2 id=&#34;json-映射到-abap&#34;&gt;json 映射到 ABAP&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Web Service 常见的返回内容格式有 xml 和 json 两种。&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;Web Service 常见的返回内容格式有 xml 和 json 两种。本文以 json 为例，xml 的处理方法和 json 大致相同，只是 “转换”的写法不同。&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;本文以 json 为例，xml 的处理方法和 json 大致相同，只是 “转换”的写法不同。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;json 示例&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;json 示例&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[
   {
@@ -130,13 +122,9 @@ ENDLOOP.
 ]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;这是一个包含2个对象的数组（&lt;code&gt;[]&lt;/code&gt;包围），每个对象（&lt;code&gt;{}&lt;/code&gt;包围）中有三个字段：&lt;code&gt;result&lt;/code&gt;, &lt;code&gt;errorCode&lt;/code&gt;, &lt;code&gt;errorMessage&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;这是一个包含2个对象的数组（&lt;code&gt;[]&lt;/code&gt;包围），每个对象（&lt;code&gt;{}&lt;/code&gt;包围）中有三个字段： &lt;code&gt;result&lt;/code&gt;, &lt;code&gt;errorCode&lt;/code&gt;, &lt;code&gt;errorMessage&lt;/code&gt;。其中&lt;code&gt;result&lt;/code&gt;是数字型的（注意没有引号包围），其他均为字符串。与后面的转换对应着看。&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;其中&lt;code&gt;result&lt;/code&gt;是数字型的（注意没有引号包围），其他均为字符串。与后面的转换对应着看。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;abap 代码&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;abap 代码&lt;/strong&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;TYPES: BEGIN OF ty_result,
         result TYPE string,
@@ -153,11 +141,7 @@ TRY
 ENDTRY.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;z_test_json1&lt;/code&gt; 是自定义的 “转换”，可以将 json 中的数据映射到 abap 内表或工作区里，因为过程涉及类型转换，所以需要 &lt;code&gt;try catch&lt;/code&gt; 来捕捉异常。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;“转换”完成后，json 中的数据就回被填入到 &lt;code&gt;it_result&lt;/code&gt;内表中，整个流程也就完成了。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;z_test_json1&lt;/code&gt; 是自定义的 “转换”，可以将 json 中的数据映射到 abap 内表或工作区里，因为过程涉及类型转换，所以需要 &lt;code&gt;try catch&lt;/code&gt; 来捕捉异常。“转换”完成后，json 中的数据就回被填入到 &lt;code&gt;it_result&lt;/code&gt;内表中，整个流程也就完成了。&lt;/p&gt;
 
 &lt;hr /&gt;
 
