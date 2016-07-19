@@ -120,12 +120,12 @@
   {
     &amp;quot;result&amp;quot;:0.0122,
     &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
-    &amp;quot;errorMessage&amp;quot;:null
+    &amp;quot;errorMessage&amp;quot;:&amp;quot;&amp;quot;
     }, 
   {
     &amp;quot;result&amp;quot;:2.01,
     &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
-    &amp;quot;errorMessage&amp;quot;:null
+    &amp;quot;errorMessage&amp;quot;:&amp;quot;&amp;quot;
   }
 ]
 &lt;/code&gt;&lt;/pre&gt;
