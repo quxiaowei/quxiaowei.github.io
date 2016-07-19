@@ -214,7 +214,7 @@ pre {
 }
 
 code {
-    font-family: "Roboto Mono";
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 12px;
 }
 
