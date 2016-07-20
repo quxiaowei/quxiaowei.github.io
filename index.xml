@@ -22,9 +22,8 @@
 &lt;p&gt;有两个关键点：&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;用 decorator 把 generator 封装在 future 里&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在 loop 中调用 generator 的 next，send 方法，传递前一步的结果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;用 decorator 把 generator 封装在 future 里&lt;/li&gt;
+&lt;li&gt;在 loop 中调用 generator 的 next，send 方法，传递前一步的结果&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;代码比较简陋，各位凑合着看。&lt;/p&gt;
