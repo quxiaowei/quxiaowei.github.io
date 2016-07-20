@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+    <head>
+        <meta charset="utf-8">
+
+        
+
+        <base href="https://quxiaowei.github.io">
+		<title>&ltquxiaowei/&gt</title>
+        <link rel="canonical" href="https://quxiaowei.github.io/post/python_async/">
+        <link href="" rel="alternate" type="application/rss+xml" title="&lt;/&gt;"/>
+
+        
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
+
+<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto+Mono'>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/dracula.css">
+<script src="https://quxiaowei.github.io/script/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+        <div class="column">
+
+<header class="header">
+    <a href="/" class="title">&lt;/&gt;</a>
+    
+</header>
+
+
+<section id="main">
+    <header class="post-header">
+      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_async/">python移步协程（coroutine） </a></p>
+      <p class="post-meta">2016.7.20</p>
+    </header>
+    <article itemprop="articleBody" id="content">
+       <p>发一段以前写的一段代码。</p>
+
+<p>tornado 是以异步相应为特色。据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。</p>
+
+<p>这段代码意图是 socket 服务器端不断接受，并恢复。</p>
+
+<p>有两个关键点：</p>
+
+<ol>
+<li>就是用 generator 的 next，send 方法不断在 loop 中调用</li>
+<li>用 decorator 把 generator 封装在 future 里</li>
+</ol>
+
+<p>代码比较简陋，各位凑合着看。</p>
+
+<p><a href="http://strawhatfy.github.io/2015/07/22/Tornado.gen/">参考</a></p>
+
+<pre><code class="language-python">import socket
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import deque
+from functools import wraps
+
+HOST = ''
+PORT = 50007
+MAX_CONN = 5
+_addr = (HOST, PORT)
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+s.bind(_addr)
+s.listen(1)
+
+_pool = {}
+
+executor = ThreadPoolExecutor(max_workers=5)
+
+def asyn(f):
+    @wraps(f)
+    def wrapper(*args, **kwds):
+        handle = f(*args, **kwds)
+        _pool[executor.submit(next, handle)] = handle
+        return handle
+    return wrapper
+
+@asyn
+def get_conn():
+    if len(_pool) &gt;= MAX_CONN:
+        yield False
+    conn, addr = s.accept()
+    print('connected')
+    while True:
+        print('before recvievng')
+        data = yield conn.recv(1024)
+        print('after recvievng' )
+        data = b'response:'+data
+        print('before sending')
+        yield conn.send(data)
+        print('after sending')充电
+
+get_conn()
+get_conn()
+_handle, _res = 0, 0
+while True:
+    _t_pool = {}
+    for fut, _handle in _pool.items(): 
+        if fut.done():
+            pass
+        else:
+            _t_pool[fut] = _handle
+            continue
+        _handle = _pool[fut]
+        _res = fut.result()
+        print('result: %s' % str(_res))
+        _t_pool[executor.submit(_handle.send, _res)] = _handle
+    _pool = _t_pool
+
+</code></pre>
+
+<p>『 終 』</p>
+    </article>
+</section>
+
+<footer class="bottom-footer">
+  <div class="copyright">
+    <p>
+    
+    <a href="http://creativecommons.org/licenses/by/4.0/" title="Creative Commons Attribution">Some rights reserved</a>; 
+    please attribute properly and link back.
+    
+    
+    </p>
+  </div>
+</footer>
+
+<script>
+    renderMathInElement(document.getElementById('main'));
+</script>
+
+</div>
+</body>
+</html>
+
