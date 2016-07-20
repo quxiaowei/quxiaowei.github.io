@@ -10,27 +10,25 @@
     <atom:link href="https://quxiaowei.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>python移步协程（coroutine）</title>
+      <title>python异步协程（coroutine）</title>
       <link>https://quxiaowei.github.io/post/python_async/</link>
       <pubDate>Wed, 20 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/python_async/</guid>
-      <description>&lt;p&gt;发一段以前写的一段代码。&lt;/p&gt;
-
-&lt;p&gt;tornado 是以异步相应为特色。据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。&lt;/p&gt;
+      <description>&lt;p&gt;tornado 以异步响应为特色，据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。&lt;/p&gt;
 
 &lt;p&gt;这段代码意图是 socket 服务器端不断接受，并恢复。&lt;/p&gt;
 
 &lt;p&gt;有两个关键点：&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;就是用 generator 的 next，send 方法不断在 loop 中调用&lt;/li&gt;
+&lt;ul&gt;
 &lt;li&gt;用 decorator 把 generator 封装在 future 里&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;在 loop 中调用 generator 的 next，send 方法，传递前一步的结果&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;代码比较简陋，各位凑合着看。&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://strawhatfy.github.io/2015/07/22/Tornado.gen/&#34;&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://strawhatfy.github.io/2015/07/22/Tornado.gen/&#34;&gt;-参考-&lt;/a&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import socket
 from concurrent.futures import ThreadPoolExecutor, as_completed

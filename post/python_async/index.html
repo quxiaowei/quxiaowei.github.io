@@ -35,26 +35,24 @@
 
 <section id="main">
     <header class="post-header">
-      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_async/">python移步协程（coroutine） </a></p>
+      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_async/">python异步协程（coroutine） </a></p>
       <p class="post-meta">2016.7.20</p>
     </header>
     <article itemprop="articleBody" id="content">
-       <p>发一段以前写的一段代码。</p>
-
-<p>tornado 是以异步相应为特色。据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。</p>
+       <p>tornado 以异步响应为特色，据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。</p>
 
 <p>这段代码意图是 socket 服务器端不断接受，并恢复。</p>
 
 <p>有两个关键点：</p>
 
-<ol>
-<li>就是用 generator 的 next，send 方法不断在 loop 中调用</li>
+<ul>
 <li>用 decorator 把 generator 封装在 future 里</li>
-</ol>
+<li>在 loop 中调用 generator 的 next，send 方法，传递前一步的结果</li>
+</ul>
 
 <p>代码比较简陋，各位凑合着看。</p>
 
-<p><a href="http://strawhatfy.github.io/2015/07/22/Tornado.gen/">参考</a></p>
+<p><a href="http://strawhatfy.github.io/2015/07/22/Tornado.gen/">-参考-</a></p>
 
 <pre><code class="language-python">import socket
 from concurrent.futures import ThreadPoolExecutor, as_completed
