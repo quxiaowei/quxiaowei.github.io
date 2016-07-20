@@ -35,15 +35,13 @@
 
 <section id="main">
     <header class="post-header">
-      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_async/">python异步协程（coroutine） </a></p>
+      <p class="post-title"><a href="https://quxiaowei.github.io/post/python_async/">Python异步协程Coroutine </a></p>
       <p class="post-meta">2016.7.20</p>
     </header>
     <article itemprop="articleBody" id="content">
        <p>tornado 以异步响应为特色，据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。</p>
 
-<p>这段代码意图是 socket 服务器端不断接受，并恢复。</p>
-
-<p>有两个关键点：</p>
+<p>这段代码意图是 socket 服务器端不断接受，并恢复。有两个关键点：</p>
 
 <ul>
 <li>用 decorator 把 generator 封装在 future 里</li>
@@ -95,7 +93,7 @@ def get_conn():
         data = b'response:'+data
         print('before sending')
         yield conn.send(data)
-        print('after sending')充电
+        print('after sending')
 
 get_conn()
 get_conn()

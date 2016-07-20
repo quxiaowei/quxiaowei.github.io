@@ -10,16 +10,14 @@
     <atom:link href="https://quxiaowei.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>python异步协程（coroutine）</title>
+      <title>Python异步协程Coroutine</title>
       <link>https://quxiaowei.github.io/post/python_async/</link>
       <pubDate>Wed, 20 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/python_async/</guid>
       <description>&lt;p&gt;tornado 以异步响应为特色，据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。&lt;/p&gt;
 
-&lt;p&gt;这段代码意图是 socket 服务器端不断接受，并恢复。&lt;/p&gt;
-
-&lt;p&gt;有两个关键点：&lt;/p&gt;
+&lt;p&gt;这段代码意图是 socket 服务器端不断接受，并恢复。有两个关键点：&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;用 decorator 把 generator 封装在 future 里&lt;/li&gt;
@@ -71,7 +69,7 @@ def get_conn():
         data = b&#39;response:&#39;+data
         print(&#39;before sending&#39;)
         yield conn.send(data)
-        print(&#39;after sending&#39;)充电
+        print(&#39;after sending&#39;)
 
 get_conn()
 get_conn()
@@ -191,7 +189,7 @@ ENDLOOP.
 
 &lt;p&gt;Web Service 常见的返回内容格式有 xml 和 json 两种。本文以 json 为例，xml 的处理方法和 json 大致相同，只是 “转换”的写法不同。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;json 示例&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;json 示例&lt;/em&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[
   {
@@ -209,7 +207,7 @@ ENDLOOP.
 
 &lt;p&gt;这是一个包含2个对象的数组（&lt;code&gt;[]&lt;/code&gt;包围），每个对象（&lt;code&gt;{}&lt;/code&gt;包围）中有三个字段： &lt;code&gt;result&lt;/code&gt;, &lt;code&gt;errorCode&lt;/code&gt;, &lt;code&gt;errorMessage&lt;/code&gt;。其中&lt;code&gt;result&lt;/code&gt;是数字型的（注意没有引号包围），其他均为字符串。与后面的转换对应着看。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;abap 代码&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;abap 代码&lt;/em&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;TYPES: BEGIN OF ty_result,
         result TYPE string,
@@ -264,19 +262,13 @@ ENDTRY.
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;array&amp;gt;&lt;/code&gt; 代表数组&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;object&amp;gt;&lt;/code&gt; 代表对象&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:loop&amp;gt;&lt;/code&gt; 循环处理&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; 代表数字，如果有非法字符会报异常，所以转换过程需要用&lt;code&gt;try catch&lt;/code&gt;来捕捉异常&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;str&amp;gt;&lt;/code&gt; 代表字符串&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:value&amp;gt;&lt;/code&gt; 的 &lt;code&gt;name&lt;/code&gt; 属性与表字段名对应，转换程序会，自动将值放到内表或工作区里。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:root&amp;gt;&lt;/code&gt; 的 &lt;code&gt;name&lt;/code&gt; 为“转换”结果（RESULT）的形参名（本例为 out）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;array&amp;gt;&lt;/code&gt; 代表数组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;object&amp;gt;&lt;/code&gt; 代表对象&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;tt:loop&amp;gt;&lt;/code&gt; 循环处理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; 代表数字，如果有非法字符会报异常，所以转换过程需要用&lt;code&gt;try catch&lt;/code&gt;来捕捉异常&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;str&amp;gt;&lt;/code&gt; 代表字符串&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;tt:value&amp;gt;&lt;/code&gt; 的 &lt;code&gt;name&lt;/code&gt; 属性与表字段名对应，转换程序会，自动将值放到内表或工作区里。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;tt:root&amp;gt;&lt;/code&gt; 的 &lt;code&gt;name&lt;/code&gt; 为“转换”结果（RESULT）的形参名（本例为 out）&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

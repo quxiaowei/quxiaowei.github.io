@@ -52,6 +52,11 @@ http://zenorocha.mit-license.org
   color: #f1fa8c;
 }
 
+.hljs-title,
+.hljs-name {
+  color: #50fa7b;
+}
+
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion,
@@ -68,7 +73,7 @@ http://zenorocha.mit-license.org
 .hljs-type,
 .hljs-name,
 .hljs-strong {
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .hljs-emphasis {

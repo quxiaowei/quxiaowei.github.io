@@ -94,7 +94,6 @@ p {
 
 article#content p {
 	margin:1.5em 0;
-	line-height: 180%;
 }
 
 article#content a {
@@ -252,6 +251,7 @@ html{
 }
 body {
     min-height: 110%;
+	line-height: 180%;
 	color: #555;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei"
