@@ -234,7 +234,7 @@ pre code{
     color:white; /*#62F591;*/
 }
 
-p code{
+li code , p code{
 	font-size:14px;
 	color: #555;
 	background-color: rgba(0, 0, 0, 0.04);
