@@ -93,37 +93,37 @@ while True:
     </item>
     
     <item>
-      <title>ABAP 调用 RESTful Web Service</title>
+      <title>ABAP调用RESTful Web Service</title>
       <link>https://quxiaowei.github.io/post/abap_call_restful_webservice/</link>
       <pubDate>Tue, 19 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/abap_call_restful_webservice/</guid>
       <description>
 
-&lt;hr /&gt;
+&lt;blockquote&gt;
+&lt;p&gt;哎！一片干的掉渣的文章。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&#34;关于rest&#34;&gt;关于REST&lt;/h2&gt;
 
-&lt;p&gt;REST 是基于 http 的 web service 架构，URL表示资源，http method: GET, POST, DELETE 等等，表示发送，收取，删除动作。我们是从第三方接收资源，用 GET 就可以了。&lt;/p&gt;
+&lt;p&gt;REST 是基于 HTTP 的 Web Service 架构，URL 表示资源，HTTP method: GET, POST, DELETE 等等，表示发送，收取，删除等动作。我们是从第三方接收资源，所以用 GET。&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;SOAP 是另一种基于 http 的 web service 协议，不在本文范围内。&lt;/p&gt;
+&lt;p&gt;SOAP 是另一种基于 HTTP 的 Web Service 协议，不在本文范围内。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;以&lt;code&gt;http://example/credit/20160516/0000001880/1380&lt;/code&gt;为例，其中&lt;code&gt;20160516&lt;/code&gt;代表日期，&lt;code&gt;0000001880&lt;/code&gt;代表客户，&lt;code&gt;1380&lt;/code&gt;代表公司，这些是 web service 的参数，要与发布者协商好格式。&lt;/p&gt;
+&lt;p&gt;以 &lt;code&gt;http://example/credit/20160516/0000001880/1380&lt;/code&gt; 为例，其中 &lt;code&gt;20160516&lt;/code&gt; 代表日期，&lt;code&gt;0000001880&lt;/code&gt; 代表客户，&lt;code&gt;1380&lt;/code&gt; 代表公司，这些作为 Web Service 的参数发给接口。&lt;/p&gt;
 
-&lt;hr /&gt;
+&lt;h2 id=&#34;http调用&#34;&gt;HTTP调用&lt;/h2&gt;
 
-&lt;h2 id=&#34;http调用&#34;&gt;http调用&lt;/h2&gt;
+&lt;p&gt;ABAP 有许多发送 HTTP GET 请求的方法。我用的是函数: &lt;code&gt;HTTP_GET&lt;/code&gt;。注意设定超时限制，防止网络不通时程序卡死。&lt;/p&gt;
 
-&lt;p&gt;abap 有许多发送 http GET 请求的方法。我用的是函数: &lt;code&gt;HTTP_GET&lt;/code&gt;。注意设定超时限制，防止网络不通时程序卡死。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;DATA: status(3) TYPE c ,
+&lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;DATA: status(3) TYPE c ,
       url TYPE c LENGTH 200,
       error TYPE string.
         
 DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &amp;quot; 返回内容
-      &amp;quot; http header
+      &amp;quot; HTTP header
       response_headers TYPE TABLE OF text100 WITH HEADER LINE. 
         
 url = |http://example/credit/{ p_datum }/{ p_customer }/{ p_company }| .
@@ -154,20 +154,19 @@ ELSE.
 ENDIF.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr /&gt;
-
 &lt;h2 id=&#34;decode&#34;&gt;Decode&lt;/h2&gt;
 
-&lt;p&gt;返回内容的编码可能与 sap 不兼容，那么需要转码。具体编码信息在 http 头里。&lt;/p&gt;
+&lt;p&gt;返回内容的编码可能与 Sap 不兼容，那么需要转码。具体编码信息在 HTTP 头里。
+以常见的 UTF-8 为例。&lt;/p&gt;
 
-&lt;p&gt;以常见的 UTF-8 为例*Decode 代码*：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Decode 代码&lt;/em&gt; ：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;DATA conv TYPE REF TO cl_abap_conv_in_ce.
+&lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;DATA conv TYPE REF TO cl_ABAP_conv_in_ce.
 DATA buffer TYPE xstring.
 DATA v_text TYPE string.&amp;quot;(100) TYPE c.
 DATA v_text_t TYPE string.&amp;quot;(100) TYPE c.
   
-conv = cl_abap_conv_in_ce=&amp;gt;create( encoding = &#39;UTF-8&#39; ).
+conv = cl_ABAP_conv_in_ce=&amp;gt;create( encoding = &#39;UTF-8&#39; ).
 LOOP AT response.
   buffer = response.
   TRY.
@@ -185,13 +184,11 @@ LOOP AT response.
 ENDLOOP.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr /&gt;
+&lt;h2 id=&#34;json映射到abap&#34;&gt;JSON映射到ABAP&lt;/h2&gt;
 
-&lt;h2 id=&#34;json映射到abap&#34;&gt;json映射到ABAP&lt;/h2&gt;
+&lt;p&gt;常见的 Web Service 返回格式有 XML 和 JSON 两种。处理 XML 的方法和 JSON 大致相同，只是 “转换”的写法不同。以 JSON 为例：&lt;/p&gt;
 
-&lt;p&gt;Web Service 常见的返回内容格式有 xml 和 json 两种。xml 的处理方法和 json 大致相同，只是 “转换”的写法不同。以 json 为例：&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;json 示例&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;JSON 示例&lt;/em&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[
   {
@@ -207,11 +204,11 @@ ENDLOOP.
 ]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这是一个包含2个对象的数组（&lt;code&gt;[]&lt;/code&gt;表示数组），每个对象（&lt;code&gt;{}&lt;/code&gt;表示对象）中有三个字段： &lt;code&gt;result&lt;/code&gt;, &lt;code&gt;errorCode&lt;/code&gt;, &lt;code&gt;errorMessage&lt;/code&gt;。&lt;code&gt;result&lt;/code&gt;是数字型的（注意没有引号包围），其他均为字符串。&lt;/p&gt;
+&lt;p&gt;这是一个包含 2 个对象的数组（&lt;code&gt;[]&lt;/code&gt;表示数组），每个对象（&lt;code&gt;{}&lt;/code&gt;表示对象）中有三个字段： &lt;code&gt;result&lt;/code&gt;, &lt;code&gt;errorCode&lt;/code&gt;, &lt;code&gt;errorMessage&lt;/code&gt;。&lt;code&gt;result&lt;/code&gt;是数字型的（注意没有引号包围），其他均为字符串。&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;abap 代码&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;ABAP 代码&lt;/em&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-abap&#34;&gt;TYPES: BEGIN OF ty_result,
+&lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;TYPES: BEGIN OF ty_result,
         result TYPE string,
         errorcode TYPE string,
         errormessage TYPE string,
@@ -222,20 +219,18 @@ TRY
     CALL TRANSFORMATION z_test_json1 SOURCE XML v_text
                                      RESULT out = it_result.
   CATCH cx_st_error cx_xslt_exception cx_transformation_error.
-    &amp;quot; 解析json失败
+    &amp;quot; 解析JSON失败
 ENDTRY.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;z_test_json1&lt;/code&gt; 是自定义的 “转换”，将 json 中的数据映射到 abap 内表或工作区里，因为过程涉及类型转换，所以需要 &lt;code&gt;try catch&lt;/code&gt; 来捕捉异常。“转换”完成后，json 中的数据回填到 &lt;code&gt;it_result&lt;/code&gt;内表中，整个流程也就完成了。&lt;/p&gt;
-
-&lt;hr /&gt;
+&lt;p&gt;&lt;code&gt;z_test_json1&lt;/code&gt; 是自定义的 “转换”，将 JSON 中的数据映射到 ABAP 内表或工作区里，因为过程涉及类型转换，所以需要 &lt;code&gt;try catch&lt;/code&gt; 来捕捉异常。“转换”完成后，JSON 中的数据会回填到 &lt;code&gt;it_result&lt;/code&gt; 内表中，整个解析的流程也就完成了。&lt;/p&gt;
 
 &lt;h2 id=&#34;转换-的写法&#34;&gt;“转换”的写法&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;创建“转换” &lt;img src=&#34;https://quxiaowei.github.io/img/transform1.png&#34; alt=&#34;创建“转换”&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;转换类型选择“简单转换”&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;“转换类型”选择“简单转换”&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;“转换”示例&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
@@ -264,60 +259,79 @@ ENDTRY.
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;array&amp;gt;&lt;/code&gt; 代表数组，与 json 的 &lt;code&gt;[]&lt;/code&gt;对应&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;array&amp;gt;&lt;/code&gt; 代表数组，与 JSON 的 &lt;code&gt;[]&lt;/code&gt;对应。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;object&amp;gt;&lt;/code&gt; 代表对象，与 json 的 &lt;code&gt;{}&lt;/code&gt;对应&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;object&amp;gt;&lt;/code&gt; 代表对象，与 JSON 的 &lt;code&gt;{}&lt;/code&gt;对应。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:loop&amp;gt;&lt;/code&gt; 循环处理多个对象，“转换” 把数据依次 append 到内表中，对于单条数据不需要使用&lt;code&gt;&amp;lt;tt:loop&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:loop&amp;gt;&lt;/code&gt; 循环处理多个对象，“转换” 把数据依次 append 到内表中，对于单条数据不需要使用&lt;code&gt;&amp;lt;tt:loop&amp;gt;&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;str&amp;gt;&lt;/code&gt; 代表数字、字符串，这里的类型要与 json 对应，否则会报错，如果有非法字符会报异常，所以转换过程需要用&lt;code&gt;try catch&lt;/code&gt;来捕捉异常&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; &lt;code&gt;&amp;lt;str&amp;gt;&lt;/code&gt; 代表数字、字符串，要与 JSON 的类型对应，否则会报错，如果有非法字符也会报异常，转换过程需要用&lt;code&gt;try catch&lt;/code&gt;来捕捉异常。&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:value&amp;gt;&lt;/code&gt; &lt;code&gt;name&lt;/code&gt; 属性与表字段名对应，转换程序会自动将值放到内表或工作区的字段中。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:root&amp;gt;&lt;/code&gt; &lt;code&gt;name&lt;/code&gt; 为“转换”结果（RESULT）的形参名（本例为 out）&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:root&amp;gt;&lt;/code&gt; &lt;code&gt;name&lt;/code&gt; 为“转换”结果（RESULT）的形参名（本例为 out）。&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;json 对象内的字段不要求和 abap 类型字段顺序一致&lt;/p&gt;
+&lt;p&gt;JSON 对象内的字段不要求和 ABAP 类型字段顺序一致&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;hr /&gt;
+&lt;h2 id=&#34;abap-to-json&#34;&gt;ABAP to JSON&lt;/h2&gt;
 
-&lt;h2 id=&#34;abap-to-json&#34;&gt;ABAP to json&lt;/h2&gt;
-
-&lt;p&gt;我们已经能够将 json 映射到 abap 里，下面我们试着将 abap 再转回 json。&lt;/p&gt;
+&lt;p&gt;我们已经能够将 JSON 映射到 ABAP 里，下面我们试着将 ABAP 再转回 JSON。&lt;/p&gt;
 
 &lt;p&gt;首先，我们将上面的 &lt;code&gt;call transformation&lt;/code&gt; 中的 &lt;code&gt;source&lt;/code&gt; 和 &lt;code&gt;result&lt;/code&gt; 对调，反向使用“转换”。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
+&lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
                                  RESULT XML = v_text.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;strong&gt;v_text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;v_text&lt;/strong&gt; :&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-16&amp;quot;?&amp;gt;&amp;lt;array&amp;gt;&amp;lt;object&amp;gt;&amp;lt;str name=&amp;quot;result&amp;quot;&amp;gt;-282.414352&amp;lt;/str&amp;gt;&amp;lt;str name=&amp;quot;errorCode&amp;quot;&amp;gt;0&amp;lt;/str&amp;gt;&amp;lt;str name=&amp;quot;errorMessage&amp;quot;&amp;gt; &amp;lt;/str&amp;gt;&amp;lt;/object&amp;gt;&amp;lt;/array&amp;gt;
+&lt;pre&gt;&lt;code class=&#34;language-XML&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-16&amp;quot;?&amp;gt;
+&amp;lt;array&amp;gt;
+  &amp;lt;object&amp;gt;
+    &amp;lt;str name=&amp;quot;result&amp;quot;&amp;gt;0.01&amp;lt;/str&amp;gt;
+    &amp;lt;str name=&amp;quot;errorCode&amp;quot;&amp;gt;0&amp;lt;/str&amp;gt;
+    &amp;lt;str name=&amp;quot;errorMessage&amp;quot;&amp;gt; &amp;lt;/str&amp;gt;
+  &amp;lt;/object&amp;gt;
+  &amp;lt;object&amp;gt;
+    &amp;lt;str name=&amp;quot;result&amp;quot;&amp;gt;2.01&amp;lt;/str&amp;gt;
+    &amp;lt;str name=&amp;quot;errorCode&amp;quot;&amp;gt;0&amp;lt;/str&amp;gt;
+    &amp;lt;str name=&amp;quot;errorMessage&amp;quot;&amp;gt; &amp;lt;/str&amp;gt;
+  &amp;lt;/object&amp;gt;
+&amp;lt;/array&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;我们发现 &lt;code&gt;v_text&lt;/code&gt; 里的是 XML，如果需要的是 XML 格式，那么任务已经完成。&lt;/p&gt;
+&lt;p&gt;我们发现 &lt;code&gt;v_text&lt;/code&gt; 里的是 XML，如果需要的是 XML 格式，那么任务已经完成。为了得到 JSON，我们继续做如下修改：&lt;/p&gt;
 
-&lt;p&gt;为了得到 json，我们继续做如下修改：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;DATA json_writer TYPE REF TO cl_sxml_string_writer.
+&lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;DATA json_writer TYPE REF TO cl_sxml_string_writer.
 json_writer = cl_sxml_string_writer=&amp;gt;create( type = if_sxml=&amp;gt;co_xt_json ).
 CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
                                  RESULT XML json_writer. &amp;quot; json_writer.
 
-&amp;quot; Get JSON-String from writer
+&amp;quot; Get json-String from writer
 DATA json TYPE xstring.
 json = json_writer-&amp;gt;get_output( ).
-v_text = cl_abap_codepage=&amp;gt;convert_from( json ).
+v_text = cl_ABAP_codepage=&amp;gt;convert_from( json ).
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;我们用类型为 co_xt_json 的 sxml_string_writer，将 xml 输出为 json 格式。 &lt;strong&gt;注意&lt;/strong&gt; &lt;code&gt;get_output()&lt;/code&gt; 输出的是字节码，要用 &lt;code&gt;cl_abap_codepage=&amp;gt;convert_from( )&lt;/code&gt; 转换成文本。&lt;/p&gt;
+&lt;p&gt;我们用类型为 co_xt_json 的 sxml_string_writer，将 XML 输出为 JSON 格式。 &lt;strong&gt;注意&lt;/strong&gt; &lt;code&gt;get_output()&lt;/code&gt; 输出的是字节码，要用 &lt;code&gt;cl_abap_codepage=&amp;gt;convert_from( )&lt;/code&gt; 转换成文本。&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;v_text&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;v_text&lt;/strong&gt; :&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[{&amp;quot;result&amp;quot;:0.0122,&amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,&amp;quot;errorMessage&amp;quot;:&amp;quot; &amp;quot;}]
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[
+  {
+    &amp;quot;result&amp;quot;:0.01,
+    &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
+    &amp;quot;errorMessage&amp;quot;:&amp;quot;&amp;quot;
+    }, 
+  {
+    &amp;quot;result&amp;quot;:2.01,
+    &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
+    &amp;quot;errorMessage&amp;quot;:&amp;quot;&amp;quot;
+  }
+]
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
