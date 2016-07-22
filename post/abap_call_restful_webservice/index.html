@@ -219,6 +219,45 @@ ENDTRY.
 <li><p><code>&lt;tt:root&gt;</code> <code>name</code> 为“转换”结果（RESULT）的形参名（本例为 out）</p></li>
 </ul>
 
+<blockquote>
+<p>json 对象内的字段不要求和 abap 类型字段顺序一致</p>
+</blockquote>
+
+<hr />
+
+<p>我们已经能够将 json 映射到 abap 里，下面我们试着将 abap 再转回 json。</p>
+
+<p>首先，我们将上面的 <code>call transformation</code> 中的 <code>source</code> 和 <code>result</code> 对调。</p>
+
+<pre><code>CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
+                                 RESULT XML = v_text.
+</code></pre>
+
+<p><strong>v_text</strong></p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;array&gt;&lt;object&gt;&lt;str name=&quot;result&quot;&gt;-282.414352&lt;/str&gt;&lt;str name=&quot;errorCode&quot;&gt;0&lt;/str&gt;&lt;str name=&quot;errorMessage&quot;&gt; &lt;/str&gt;&lt;/object&gt;&lt;/array&gt;
+</code></pre>
+
+<p>我们发现 <code>v_text</code> 里的是 XML，如果需要的是 XML 格式，那么任务已经完成。</p>
+
+<p>为了得到 json，我们做如下修改：</p>
+
+<pre><code>DATA json_writer TYPE REF TO cl_sxml_string_writer.
+json_writer = cl_sxml_string_writer=&gt;create( type = if_sxml=&gt;co_xt_json ).
+CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
+                                 RESULT XML json_writer. &quot; json_writer.
+
+&quot; Get JSON-String from writer
+DATA json TYPE xstring.
+json = json_writer-&gt;get_output( ).
+v_text = cl_abap_codepage=&gt;convert_from( json ).
+</code></pre>
+
+<p>我们用类型为 co_xt_json 的 sxml_string_writer，将 xml 输出为 json 格式。 <strong>注意</strong> <code>get_output()</code> 输出的是字节码，要用 <code>cl_abap_codepage=&gt;convert_from( )</code> 转换成文本。</p>
+
+<pre><code class="language-js">[{&quot;result&quot;:0.0122,&quot;errorCode&quot;:&quot;0&quot;,&quot;errorMessage&quot;:&quot; &quot;}]
+</code></pre>
+
 <p>『 終 』</p>
     </article>
 </section>

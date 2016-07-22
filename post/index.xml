@@ -276,6 +276,45 @@ ENDTRY.
 
 &lt;li&gt;&lt;p&gt;&lt;code&gt;&amp;lt;tt:root&amp;gt;&lt;/code&gt; &lt;code&gt;name&lt;/code&gt; 为“转换”结果（RESULT）的形参名（本例为 out）&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;json 对象内的字段不要求和 abap 类型字段顺序一致&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;我们已经能够将 json 映射到 abap 里，下面我们试着将 abap 再转回 json。&lt;/p&gt;
+
+&lt;p&gt;首先，我们将上面的 &lt;code&gt;call transformation&lt;/code&gt; 中的 &lt;code&gt;source&lt;/code&gt; 和 &lt;code&gt;result&lt;/code&gt; 对调。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
+                                 RESULT XML = v_text.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;v_text&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-16&amp;quot;?&amp;gt;&amp;lt;array&amp;gt;&amp;lt;object&amp;gt;&amp;lt;str name=&amp;quot;result&amp;quot;&amp;gt;-282.414352&amp;lt;/str&amp;gt;&amp;lt;str name=&amp;quot;errorCode&amp;quot;&amp;gt;0&amp;lt;/str&amp;gt;&amp;lt;str name=&amp;quot;errorMessage&amp;quot;&amp;gt; &amp;lt;/str&amp;gt;&amp;lt;/object&amp;gt;&amp;lt;/array&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们发现 &lt;code&gt;v_text&lt;/code&gt; 里的是 XML，如果需要的是 XML 格式，那么任务已经完成。&lt;/p&gt;
+
+&lt;p&gt;为了得到 json，我们做如下修改：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DATA json_writer TYPE REF TO cl_sxml_string_writer.
+json_writer = cl_sxml_string_writer=&amp;gt;create( type = if_sxml=&amp;gt;co_xt_json ).
+CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
+                                 RESULT XML json_writer. &amp;quot; json_writer.
+
+&amp;quot; Get JSON-String from writer
+DATA json TYPE xstring.
+json = json_writer-&amp;gt;get_output( ).
+v_text = cl_abap_codepage=&amp;gt;convert_from( json ).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们用类型为 co_xt_json 的 sxml_string_writer，将 xml 输出为 json 格式。 &lt;strong&gt;注意&lt;/strong&gt; &lt;code&gt;get_output()&lt;/code&gt; 输出的是字节码，要用 &lt;code&gt;cl_abap_codepage=&amp;gt;convert_from( )&lt;/code&gt; 转换成文本。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;[{&amp;quot;result&amp;quot;:0.0122,&amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,&amp;quot;errorMessage&amp;quot;:&amp;quot; &amp;quot;}]
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
