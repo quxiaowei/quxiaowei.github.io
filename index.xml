@@ -15,7 +15,7 @@
       <pubDate>Fri, 22 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/python_simple_calculator/</guid>
-      <description>&lt;p&gt;看到网上有人问，回想起学校日子，想了一下，实现了一个。没用逆波兰式。很见单没有合法性校验，还必须用空格分隔每个操作符和数字，真是简陋。&lt;/p&gt;
+      <description>&lt;p&gt;看到网上有人问，经典作业题，实现了一个练练手。没用逆波兰式。没有合法性校验，必须用空格分隔每个操作符和数字，还真是简陋。&lt;/p&gt;
 
 &lt;script src=&#34;//gist.github.com/quxiaowei/ad5846ec6d4a99bb1bdbf5d4a85386c3.js&#34;&gt;&lt;/script&gt;
 </description>
