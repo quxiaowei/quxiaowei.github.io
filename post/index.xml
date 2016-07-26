@@ -252,7 +252,7 @@ ENDTRY.
   &amp;lt;tt:root name=&amp;quot;OUT&amp;quot;/&amp;gt;
   &amp;lt;tt:template&amp;gt;
     &amp;lt;array&amp;gt;
-      &amp;lt;tt:loop ref=&amp;quot;.RESULT&amp;quot;&amp;gt;
+      &amp;lt;tt:loop ref=&amp;quot;OUT&amp;quot;&amp;gt;
         &amp;lt;object&amp;gt;
           &amp;lt;num name=&amp;quot;result&amp;quot;&amp;gt;
             &amp;lt;tt:value ref=&amp;quot;$ref.RESULT&amp;quot;/&amp;gt;
