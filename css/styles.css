@@ -28,7 +28,7 @@ header.header {
 
 .title {
     /* font-family: "Roboto Mono", Helvetica, serif; */
-    font-size: 20px;
+    font-size: 14px;
 	font-weight: normal;
 	color: #b8c0cc; 
 	letter-spacing: 0.2em;
@@ -55,8 +55,8 @@ header.header {
 }
 
 .post-title {
-	font-size: 20px;
-	font-weight: 700;
+	font-size: 16px;
+	font-weight: normal;
 	letter-spacing : 0.1em;
 	margin: 20px 0 0 0;
 	color:#333;
