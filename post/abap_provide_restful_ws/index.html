@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+    <head>
+        <meta charset="utf-8">
+
+        
+
+        <base href="https://quxiaowei.github.io">
+		<title>&ltquxiaowei/&gt</title>
+        <link rel="canonical" href="https://quxiaowei.github.io/post/abap_provide_restful_ws/">
+        <link href="" rel="alternate" type="application/rss+xml" title="&lt;/&gt;"/>
+
+        
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
+
+<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto+Mono'>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/dracula.css">
+<script src="https://quxiaowei.github.io/script/highlight.pack.js"></script>
+<script src="https://quxiaowei.github.io/script/abap.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    </head>
+    <body>
+        <div class="column">
+
+<header class="header">
+    <a href="/" class="title">&lt;/&gt;</a>
+    
+</header>
+
+
+<section id="main">
+    <header class="post-header">
+      <p class="post-title"><a href="https://quxiaowei.github.io/post/abap_provide_restful_ws/">ABAP 发布 RESTful Web Service </a></p>
+      <p class="post-meta">2016.8.13</p>
+    </header>
+    <article itemprop="articleBody" id="content">
+       
+
+<blockquote>
+<p>对应之前调用 RESTful Web Service 的文章，今天补一篇发布 Web Service 的说明。</p>
+</blockquote>
+
+<h2 id="首先要搞到一个网址-以供外部访问">首先要搞到一个网址，以供外部访问</h2>
+
+<p><code>SICF</code> 创建一个子服务，需要注意两个地方：</p>
+
+<ul>
+<li>登陆数据（这个地方我还没怎么搞明白，我就用的自己的帐号、密码，导致密码被锁）<br /></li>
+<li>处理器清单，这里的处理填入的类就是我们处理请求的地方</li>
+</ul>
+
+<p><strong>这个类的注意点</strong>（可能因系统版本不同）</p>
+
+<ul>
+<li>超类：<code>CL_REST_HTTP_HANDLER</code><br /></li>
+<li>接口：<code>IF_HTTP_EXTENSION</code>，<code>IF_REST_APPLICATION</code>，<code>IF_REST_HANDLER</code> 这三个接口是 <strong>必须的</strong>。<code>IF_REST_RESOURCE</code> 这个似乎可以分别处理 <code>GET</code>, <code>POST</code> 等方法，但可能是版本的问题，我这边没用到</li>
+</ul>
+
+<hr />
+
+<h2 id="方法">方法</h2>
+
+<ul>
+<li><code>IF_REST_APPLICATION~GET_ROOT_HANDLER</code><br />
+用来绑定不同的网址到不同的类，还有模范变量等等。关于模板的语法，可以去 <code>CL_REST_ROUTER~FIND_MATCH</code> 的代码中注释中找到。<a href="https://jsr311.dev.java.net/nonav/releases/1.1/spec/spec3.html">参考</a> 似乎是个很古老的网页了。</li>
+</ul>
+
+<p><img src="/img/abap_provide_ws_root.png" alt="示例1" /></p>
+
+<ul>
+<li>实现 <code>IF_REST_HANDLER~HANDLE</code> 方法</li>
+</ul>
+
+<p><img src="/img/abap_provide_ws_handler.png" alt="示例2" /></p>
+
+<hr />
+
+<h2 id="注意">注意</h2>
+
+<p>有些传入的参数需要 unescape 一下，对应的在调用的时候要 escape 下 <code>cl_http_utility=&gt;if_http_utility~unescape_url</code> <code>cl_http_utility=&gt;if_http_utility~escape_url</code> 这个类里还提供一些其他方法，像 base64 等。</p>
+
+<blockquote>
+<p>这里我只处理了 get 请求，没有区分开来，这点还没怎么研究。可以把 <code>IO_REQUEST</code>, <code>IO_RESPONSE</code> 可以放在类属性里，供 get、post 等方法使用。可以看下 <code>IF_HTTP_EXTENSION~HANDLE_REQUEST</code> 的代码，会有帮助。</p>
+</blockquote>
+
+<p>最后给个参考 <a href="http://scn.sap.com/docs/DOC-51570">http://scn.sap.com/docs/DOC-51570</a> ，因为系统版本不同，所以具体代码对我没有太大参考价值，但能提供大概的提示。</p>
+
+<hr />
+
+<p>- 前篇 <a href="post/abap_call_restful_webservice/">&ldquo;ABAP 调用 RESTful Web Service&rdquo;</a></p>
+
+<hr />
+
+<p>『 終 』</p>
+    </article>
+</section>
+
+<footer class="bottom-footer">
+  <div class="copyright">
+    <p>
+    
+    <a href="http://creativecommons.org/licenses/by/4.0/" title="Creative Commons Attribution">Some rights reserved</a>; 
+    please attribute properly and link back.
+    
+    
+    </p>
+  </div>
+</footer>
+
+<script>
+    renderMathInElement(document.getElementById('main'));
+</script>
+
+</div>
+</body>
+</html>
+
