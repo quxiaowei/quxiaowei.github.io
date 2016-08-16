@@ -259,3 +259,9 @@ body {
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont,"Helvetica Neue","PingFang-SC-Regular","STHeiti", "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei"
 }
+
+@media screen and (max-device-width:480px){
+	body{
+		-webkit-text-size-adjust:none;
+	}
+}
