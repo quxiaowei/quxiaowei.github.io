@@ -261,10 +261,12 @@ body {
 }
 
 @media screen 
-and (min-device-width:768px) 
-and (max-device-width:1024px) 
+and (max-device-width:768px) 
 and (-webkit-min-device-pixel-ratio: 2){
-	body{
-		-webkit-text-size-adjust:none;
-	}
+    .column {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: scroll;
+        line-height: 1.8em;
+    }
 }
