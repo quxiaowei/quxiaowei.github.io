@@ -43,7 +43,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;IF_REST_APPLICATION~GET_ROOT_HANDLER&lt;/code&gt;&lt;br /&gt;
-用来绑定不同的网址到不同的类，还有模范变量等等。关于模板的语法，可以去 &lt;code&gt;CL_REST_ROUTER~FIND_MATCH&lt;/code&gt; 的代码中注释中找到。&lt;a href=&#34;https://jsr311.dev.java.net/nonav/releases/1.1/spec/spec3.html&#34;&gt;参考&lt;/a&gt; 似乎是个很古老的网页了。&lt;/li&gt;
+用来绑定不同的网址到不同的类，还有模板变量等等。关于模板的语法，可以去 &lt;code&gt;CL_REST_ROUTER~FIND_MATCH&lt;/code&gt; 的代码中注释中找到。&lt;a href=&#34;https://jsr311.dev.java.net/nonav/releases/1.1/spec/spec3.html&#34;&gt;参考&lt;/a&gt; 似乎是个很古老的网页了。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://quxiaowei.github.io/img/abap_provide_ws_root.png&#34; alt=&#34;示例1&#34; /&gt;&lt;/p&gt;
