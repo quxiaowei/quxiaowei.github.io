@@ -264,10 +264,9 @@ body {
 and (max-device-width:768px) 
 and (-webkit-min-device-pixel-ratio: 2){
     .column {
-        -webkit-text-size-adjust: 160%;
+        -webkit-text-size-adjust: 180%;
         width: 100%;
         max-width: 100%;
         overflow-x: scroll;
-        line-height: 1.8em;
     }
 }
