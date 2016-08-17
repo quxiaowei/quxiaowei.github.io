@@ -268,5 +268,6 @@ and (-webkit-min-device-pixel-ratio: 2){
         width: 100%;
         max-width: 100%;
         overflow-x: scroll;
+        line-height: 180%;
     }
 }
