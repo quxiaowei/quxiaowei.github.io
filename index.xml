@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>&lt;/&gt;</title>
+    <title>A CodeSmith ⌘</title>
     <link>https://quxiaowei.github.io/</link>
-    <description>Recent content on &lt;/&gt;</description>
+    <description>Recent content on A CodeSmith ⌘</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate>
@@ -21,9 +21,7 @@
 &lt;p&gt;对应之前调用 RESTful Web Service 的文章，今天补一篇发布 Web Service 的说明。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;首先要搞到一个网址-以供外部访问&#34;&gt;首先要搞到一个网址，以供外部访问&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;SICF&lt;/code&gt; 创建一个子服务，需要注意两个地方：&lt;/p&gt;
+&lt;p&gt;首先要搞到一个网址，以供外部访问。&lt;code&gt;SICF&lt;/code&gt; 创建一个子服务，需要注意两个地方：&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;登陆数据（这个地方我还没怎么搞明白，我就用的自己的帐号、密码，导致密码被锁）&lt;br /&gt;&lt;/li&gt;
@@ -37,40 +35,27 @@
 &lt;li&gt;接口：&lt;code&gt;IF_HTTP_EXTENSION&lt;/code&gt;， &lt;code&gt;IF_REST_APPLICATION&lt;/code&gt;， &lt;code&gt;IF_REST_HANDLER&lt;/code&gt;  这三个接口是 &lt;strong&gt;必须的&lt;/strong&gt;。&lt;code&gt;IF_REST_RESOURCE&lt;/code&gt; 这个似乎可以分别处理 &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt; 等方法，但可能是版本的问题，我这边没用到&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;hr /&gt;
-
 &lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;IF_REST_APPLICATION~GET_ROOT_HANDLER&lt;/code&gt;&lt;br /&gt;
-用来绑定不同的网址到不同的类，还有模板变量等等。关于模板的语法，可以去 &lt;code&gt;CL_REST_ROUTER~FIND_MATCH&lt;/code&gt; 的代码中注释中找到。&lt;a href=&#34;https://jsr311.dev.java.net/nonav/releases/1.1/spec/spec3.html&#34;&gt;参考&lt;/a&gt; 似乎是个很古老的网页了。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;IF_REST_APPLICATION~GET_ROOT_HANDLER&lt;/code&gt; 用来绑定不同的网址到不同的类，还有模板变量等等。关于模板的语法，可以去 &lt;code&gt;CL_REST_ROUTER~FIND_MATCH&lt;/code&gt; 的代码中注释中找到。&lt;a href=&#34;https://jsr311.dev.java.net/nonav/releases/1.1/spec/spec3.html&#34;&gt;参考&lt;/a&gt; 似乎是个很古老的网页了。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://quxiaowei.github.io/img/abap_provide_ws_root.png&#34; alt=&#34;示例1&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script src=&#34;//gist.github.com/quxiaowei/d8beb6c96fe3400d2a32e04f7f59e1b0.js&#34;&gt;&lt;/script&gt;
+&lt;!--![示例1](/img/abap_provide_ws_root.png)--&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;实现 &lt;code&gt;IF_REST_HANDLER~HANDLE&lt;/code&gt; 方法&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;实现 &lt;code&gt;IF_REST_HANDLER~HANDLE&lt;/code&gt; 方法&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://quxiaowei.github.io/img/abap_provide_ws_handler.png&#34; alt=&#34;示例2&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;script src=&#34;//gist.github.com/quxiaowei/5537e4ecb295df359c7d269fb9a58e1a.js&#34;&gt;&lt;/script&gt;
+&lt;!--![示例2](/img/abap_provide_ws_handler.png)--&gt;&lt;/p&gt;
 
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;注意&#34;&gt;注意&lt;/h2&gt;
-
-&lt;p&gt;有些传入的参数需要 unescape 一下，对应的在调用的时候要 escape 下 &lt;code&gt;cl_http_utility=&amp;gt;if_http_utility~unescape_url&lt;/code&gt; &lt;code&gt;cl_http_utility=&amp;gt;if_http_utility~escape_url&lt;/code&gt; 这个类里还提供一些其他方法，像 base64 等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;: 有些传入的参数需要 unescape 一下，对应的在调用的时候要 escape 下 &lt;code&gt;cl_http_utility=&amp;gt;if_http_utility~unescape_url&lt;/code&gt; &lt;code&gt;cl_http_utility=&amp;gt;if_http_utility~escape_url&lt;/code&gt; 这个类里还提供一些其他方法，像 base64 等。&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;这里我只处理了 get 请求，没有区分开来，这点还没怎么研究。可以把 &lt;code&gt;IO_REQUEST&lt;/code&gt;, &lt;code&gt;IO_RESPONSE&lt;/code&gt; 可以放在类属性里，供 get、post 等方法使用。可以看下 &lt;code&gt;IF_HTTP_EXTENSION~HANDLE_REQUEST&lt;/code&gt; 的代码，会有帮助。&lt;/p&gt;
+&lt;p&gt;这里我只处理了 get 请求，没有区分开来，这点还没怎么研究。可以把 IO_REQUEST, IO_RESPONSE 可以放在类属性里，供 get、post 等方法使用。可以看下 IF_HTTP_EXTENSION~HANDLE_REQUEST 的代码，会有帮助。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;最后给个参考 &lt;a href=&#34;http://scn.sap.com/docs/DOC-51570&#34;&gt;http://scn.sap.com/docs/DOC-51570&lt;/a&gt; ，因为系统版本不同，所以具体代码对我没有太大参考价值，但能提供大概的提示。&lt;/p&gt;
 
-&lt;hr /&gt;
-
 &lt;p&gt;- 前篇 &lt;a href=&#34;post/abap_call_restful_webservice/&#34;&gt;&amp;ldquo;ABAP 调用 RESTful Web Service&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
 </description>
     </item>
     
@@ -105,67 +90,7 @@
 
 &lt;p&gt;&lt;a href=&#34;http://strawhatfy.github.io/2015/07/22/Tornado.gen/&#34;&gt;-参考-&lt;/a&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import socket
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import deque
-from functools import wraps
-
-HOST = &#39;&#39;
-PORT = 50007
-MAX_CONN = 5
-_addr = (HOST, PORT)
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
-s.bind(_addr)
-s.listen(1)
-
-_pool = {}
-
-executor = ThreadPoolExecutor(max_workers=5)
-
-def asyn(f):
-    @wraps(f)
-    def wrapper(*args, **kwds):
-        handle = f(*args, **kwds)
-        _pool[executor.submit(next, handle)] = handle
-        return handle
-    return wrapper
-
-@asyn
-def get_conn():
-    if len(_pool) &amp;gt;= MAX_CONN:
-        yield False
-    conn, addr = s.accept()
-    print(&#39;connected&#39;)
-    while True:
-        print(&#39;before recvievng&#39;)
-        data = yield conn.recv(1024)
-        print(&#39;after recvievng&#39; )
-        data = b&#39;response:&#39;+data
-        print(&#39;before sending&#39;)
-        yield conn.send(data)
-        print(&#39;after sending&#39;)
-
-get_conn()
-get_conn()
-_handle, _res = 0, 0
-while True:
-    _t_pool = {}
-    for fut, _handle in _pool.items(): 
-        if fut.done():
-            pass
-        else:
-            _t_pool[fut] = _handle
-            continue
-        _handle = _pool[fut]
-        _res = fut.result()
-        print(&#39;result: %s&#39; % str(_res))
-        _t_pool[executor.submit(_handle.send, _res)] = _handle
-    _pool = _t_pool
-
-&lt;/code&gt;&lt;/pre&gt;
+&lt;script src=&#34;//gist.github.com/quxiaowei/0be3d0b20681d8869e8ddffb615fa6d6.js&#34;&gt;&lt;/script&gt;
 </description>
     </item>
     
@@ -355,9 +280,7 @@ ENDTRY.
 
 &lt;h2 id=&#34;abap-to-json&#34;&gt;ABAP to JSON&lt;/h2&gt;
 
-&lt;p&gt;我们已经能够将 JSON 映射到 ABAP 里，下面我们试着将 ABAP 再转回 JSON。&lt;/p&gt;
-
-&lt;p&gt;首先，我们将上面的 &lt;code&gt;call transformation&lt;/code&gt; 中的 &lt;code&gt;source&lt;/code&gt; 和 &lt;code&gt;result&lt;/code&gt; 对调，反向使用“转换”。&lt;/p&gt;
+&lt;p&gt;我们已经能够将 JSON 映射到 ABAP 里，下面我们试着将 ABAP 再转回 JSON。首先，我们将上面的 &lt;code&gt;call transformation&lt;/code&gt; 中的 &lt;code&gt;source&lt;/code&gt; 和 &lt;code&gt;result&lt;/code&gt; 对调，反向使用“转换”。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;CALL TRANSFORMATION z_test_json1 SOURCE out = it_result
                                  RESULT XML = v_text.
@@ -411,11 +334,7 @@ v_text = cl_ABAP_codepage=&amp;gt;convert_from( json ).
 ]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr /&gt;
-
 &lt;p&gt;- 后篇 &lt;a href=&#34;post/abap_provide_restful_ws/&#34;&gt;&amp;ldquo;ABAP 发布 RESTful Web Service&amp;rdquo;&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
 </description>
     </item>
     

@@ -6,21 +6,19 @@
         
 
         <base href="https://quxiaowei.github.io">
-		<title>&ltquxiaowei/&gt</title>
+		<title>A CodeSmith ⌘</title>
         <link rel="canonical" href="https://quxiaowei.github.io/post/python_async/">
-        <link href="" rel="alternate" type="application/rss+xml" title="&lt;/&gt;"/>
+        <link href="" rel="alternate" type="application/rss+xml" title="A CodeSmith ⌘"/>
 
         
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
-
-<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto+Mono'>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
-<link rel="stylesheet" href="https://quxiaowei.github.io/css/dracula.css">
-<script src="https://quxiaowei.github.io/script/highlight.pack.js"></script>
+
+
 <script>hljs.initHighlightingOnLoad();</script>
 
     </head>
@@ -28,7 +26,7 @@
         <div class="column">
 
 <header class="header">
-    <a href="/" class="title">&lt;/&gt;</a>
+    <a href="/" class="title">A CodeSmith ⌘</a>
     
 </header>
 
@@ -52,67 +50,7 @@
 
 <p><a href="http://strawhatfy.github.io/2015/07/22/Tornado.gen/">-参考-</a></p>
 
-<pre><code class="language-python">import socket
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import deque
-from functools import wraps
-
-HOST = ''
-PORT = 50007
-MAX_CONN = 5
-_addr = (HOST, PORT)
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
-s.bind(_addr)
-s.listen(1)
-
-_pool = {}
-
-executor = ThreadPoolExecutor(max_workers=5)
-
-def asyn(f):
-    @wraps(f)
-    def wrapper(*args, **kwds):
-        handle = f(*args, **kwds)
-        _pool[executor.submit(next, handle)] = handle
-        return handle
-    return wrapper
-
-@asyn
-def get_conn():
-    if len(_pool) &gt;= MAX_CONN:
-        yield False
-    conn, addr = s.accept()
-    print('connected')
-    while True:
-        print('before recvievng')
-        data = yield conn.recv(1024)
-        print('after recvievng' )
-        data = b'response:'+data
-        print('before sending')
-        yield conn.send(data)
-        print('after sending')
-
-get_conn()
-get_conn()
-_handle, _res = 0, 0
-while True:
-    _t_pool = {}
-    for fut, _handle in _pool.items(): 
-        if fut.done():
-            pass
-        else:
-            _t_pool[fut] = _handle
-            continue
-        _handle = _pool[fut]
-        _res = fut.result()
-        print('result: %s' % str(_res))
-        _t_pool[executor.submit(_handle.send, _res)] = _handle
-    _pool = _t_pool
-
-</code></pre>
+<script src="//gist.github.com/quxiaowei/0be3d0b20681d8869e8ddffb615fa6d6.js"></script>
 
 <p>『 終 』</p>
     </article>
