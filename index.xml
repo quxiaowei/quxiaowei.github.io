@@ -88,6 +88,23 @@
 
 &lt;p&gt;代码比较简陋，各位凑合着看。&lt;/p&gt;
 
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;2016/09/29 更新&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;最近又在看异步相关的内容，发现自己以前的理解是错误的。内容比较多，可能会单开一篇说下，这里就列出几个我自己理解的错误点、我认为比较关键点。希望对像我一样的学习者有所帮助。&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;async | await 关键字，&lt;u&gt;它并不能将同步的代码变成异步&lt;/u&gt; ，异步的实现需要异步的库来实现，比如标准的 asyncio 库、tornado、还有 David Beazley 写的一个实验性 curio 库（我目前正在看他的代码）。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;async | await ：关键字只是一个 &lt;strong&gt;接口&lt;/strong&gt;，只是一个 &lt;strong&gt;接口&lt;/strong&gt;。 就像 yield 定义了 generator， &lt;code&gt;async def&lt;/code&gt; 定义一个类型 coroutine factory，它的返回值就是一个 coroutine（叫做 native coroutine 以区别于 3.5 之前的 coroutine ）。await 后面必须是一个 awaitable 的对象，即实现 &lt;code&gt;__await()__&lt;/code&gt; 方法的对象，至于这个对象是用 future 还是其他什么东西并不重要。大部分库都是基于类似 future 定义了自己的 task，每家的构建都不同，但本质上就是通过 generator | send 机制
+实现的回调机制。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;coroutine | loop ：coroutine 自己不会自己跑起来，那么就需要一个 loop 来返回来管理这些 coroutine ，找到完成的、再回调。易见管理 coroutine 的机制必定和 coroutine 的实现方式紧密耦合，&lt;u&gt;所以各家的 coroutine, task 基本只能和自家的 loop 配套使用&lt;/u&gt;。但 &lt;code&gt;asyncio.Future&lt;/code&gt; 作为标准库的，基本得到其他家的兼容，或提供了 adaptor 但使用过程并不很友好，时不时会遇到问题。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;需要关注下 &lt;code&gt;yield from&lt;/code&gt;， 3.5 之前 &lt;code&gt;yield from&lt;/code&gt; 等同于 &lt;code&gt;await&lt;/code&gt;。需要关注下两代 coroutine 的区别。这里不细说，详见标准文档。 还有 &lt;code&gt;concurrent.futures.Future&lt;/code&gt; 和 &lt;code&gt;asyncio.future&lt;/code&gt; 区别，在使用需要注意下，不然很麻烦。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;p&gt;&lt;a href=&#34;http://strawhatfy.github.io/2015/07/22/Tornado.gen/&#34;&gt;-参考-&lt;/a&gt;&lt;/p&gt;
 
 &lt;script src=&#34;//gist.github.com/quxiaowei/0be3d0b20681d8869e8ddffb615fa6d6.js&#34;&gt;&lt;/script&gt;
