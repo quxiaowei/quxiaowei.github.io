@@ -10,13 +10,13 @@ html{
 
 body {
     min-height: 110%;
-    line-height: 150%;
+    line-height: 180%;
     /* color: #555; */
     color:black;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont,
     "Helvetica Neue","PingFang-SC-Regular","STHeiti", 
-    "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
+    "Helvetica","Arial","Verdana","sans-serif","宋体","Microsoft YaHei";
 }
 
 .column {
@@ -47,6 +47,11 @@ header.header {
     width: 100%;
     margin-bottom: 1.5em;
 	margin-top: 0em;
+}
+
+u {
+    text-decoration: none;
+    border-bottom: 1px dashed #333;
 }
 
 .title {
