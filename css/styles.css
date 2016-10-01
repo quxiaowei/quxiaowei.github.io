@@ -51,7 +51,7 @@ header.header {
 
 u {
     text-decoration: none;
-    border-bottom: 1px dashed #333;
+    border-bottom: 1px solid #777;
 }
 
 .title {
@@ -74,7 +74,7 @@ u {
 article.post {
     margin-left: -20px;
     margin-right: -20px;
-    padding:10px 20px;
+    padding:5px 20px;
     background-color: inherit;
     /*border-top: 3px dotted white;*/
 }
@@ -147,7 +147,7 @@ p {
 }
 
 article#content p {
-	margin:1em 0;
+	margin:1.5em 0;
 }
 
 article#content a {
@@ -205,8 +205,8 @@ blockquote {
 /* hr/bar styling */
 
 hr {
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
     border: 0;
     height: 0;
     border-top: 1px dashed #aaa;
