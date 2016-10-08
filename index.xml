@@ -77,30 +77,28 @@
       <pubDate>Wed, 20 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://quxiaowei.github.io/post/python_async/</guid>
-      <description>&lt;p&gt;tornado 以异步响应为特色，据说是以generator实现的，之前研究过一下，根据原理写了一段简陋的演示代码。3.5 之后 python &lt;del&gt;增加了async 关键字，就不需要自己实现了&lt;/del&gt;。这段代码意图是 socket 服务器端不断接受，并恢复。有两个关键点：&lt;/p&gt;
+      <description>&lt;p&gt;tornado 以异步响应为特色，据说是以 generator 实现的，之前简单研究过，根据原理写了一段简陋的演示代码。3.5 之后 python &lt;del&gt;增加了async 关键字，就不需要自己实现了&lt;/del&gt;。这段代码是实现一个异步响应多个链接 socket server。有两个关键点：&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;用 decorator 把 generator 封装在 future 里&lt;/li&gt;
 &lt;li&gt;在 loop 中调用 generator 的 next，send 方法，传递前一步的结果&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;代码比较简陋，各位凑合着看。&lt;/p&gt;
-
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;2016/09/29 更新&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;最近又在看异步相关的内容，发现以前的理解是错误的。内容比较多，这里就列出几个我理解的错误点、我认为的关键点。希望对像我一样的学习者有所帮助。&lt;/p&gt;
+&lt;p&gt;最近在重看异步相关的内容，发现以前的理解是错误的。内容比较多，这里列出几个我理解中的错误点 和 我认为的关键点。&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;async | await 关键字，&lt;u&gt;它并不能将同步的代码变成异步&lt;/u&gt; ，异步需要异步的库来实现，比如标准的 asyncio 库、tornado、还有 David Beazley 写的一个实验性 curio 库（我目前正在看他的代码）。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;async | await 关键字只是一个 &lt;strong&gt;接口&lt;/strong&gt;，只是一个 &lt;strong&gt;接口&lt;/strong&gt;，&lt;u&gt;它并不能将同步的代码变成异步&lt;/u&gt; ，异步需要其他的库来实现，比如标准的 asyncio 库、tornado、还有 David Beazley 写的一个实验性 curio 库（我目前正在看他的代码）。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;async | await ：关键字只是一个 &lt;strong&gt;接口&lt;/strong&gt;，只是一个 &lt;strong&gt;接口&lt;/strong&gt;。 就像 yield 成了 generator 类型的对象， &lt;code&gt;async def&lt;/code&gt; 生成了 coroutine 对象（叫做 native coroutine 以区别于 3.5 之前的 coroutine ）。await 后面必须是一个 awaitable 的对象，即实现 &lt;code&gt;__await()__&lt;/code&gt; 方法的对象，至于这个对象是用 future 还是其他什么东西并不重要。大部分库都是基于类似 future 定义了自己的 task，每家的构建都不同，但本质上就是通过 generator | send 机制
-实现的回调机制。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;async def: 就像 yield 催生了 generator 类型， &lt;code&gt;async def&lt;/code&gt; 催生了 coroutine 类型（叫做 native coroutine 以区别于 3.5 之前的 coroutine ）。await 后必须跟着一个 awaitable 的对象，即实现 &lt;code&gt;__await()__&lt;/code&gt; 方法的对象，至于这个对象是用 future 还是其他什么东西并不重要。大部分库基于类似 future 定义了自己的 task，每家的构建都不同，但实质是通过 generator | send 机制
+实现回调。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;coroutine | loop ：coroutine 自己不会自己跑起来，那么就需要一个 loop 来返回来管理这些 coroutine ，找到完成的、再穿入上一步的结果回调。可见管理 coroutine 必定和 coroutine 的实现方式紧密耦合，&lt;u&gt;所以各家的 task 基本只能和自家的 loop 配套使用&lt;/u&gt;。但 &lt;code&gt;asyncio.Future&lt;/code&gt; 作为标准库，得到了 tornado 的兼容，或提供了 adaptor 但使用过程并不十分友好，时不时会遇到问题。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;coroutine | loop ：coroutine 不会自己跑起来，需要一个 loop 来管理这些 coroutine ，找到完成的、再穿入上一步的结果来回调。所以管理 loop 必定和 coroutine 的实现方式紧密耦合，&lt;u&gt;所以各家的 task 基本只能和自家的 loop 配套使用&lt;/u&gt;。但 &lt;code&gt;asyncio.Future&lt;/code&gt; 作为标准库，得到了 tornado 的兼容，并提供了 adaptor。 但使用过程并不十分友好，时不时会遇到问题。&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;需要关注下 &lt;code&gt;yield from&lt;/code&gt;， 3.5 之前 &lt;code&gt;yield from&lt;/code&gt; 等同于 &lt;code&gt;await&lt;/code&gt;。需要关注下两代 coroutine 的区别。详见标准文档，这里不细说。还有需要注意下 &lt;code&gt;concurrent.futures.Future&lt;/code&gt; 和 &lt;code&gt;asyncio.future&lt;/code&gt; 区别，使用 threadpool 返回的是前者，而前者是不能被 await 的。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;另外，需要关注下 &lt;code&gt;yield from&lt;/code&gt;， 3.5 之前 &lt;code&gt;yield from&lt;/code&gt; 等同于 &lt;code&gt;await&lt;/code&gt;。需要关注下两代 coroutine 的区别。这里不细说，详见标准文档。还有需要注意下 &lt;code&gt;concurrent.futures.Future&lt;/code&gt; 和 &lt;code&gt;asyncio.future&lt;/code&gt; 区别，使用 threadpool 返回的是前者，而前者是不能被 await 的。&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://strawhatfy.github.io/2015/07/22/Tornado.gen/&#34;&gt;-参考-&lt;/a&gt;&lt;/p&gt;
