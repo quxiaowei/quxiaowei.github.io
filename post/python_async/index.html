@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-US">
+<html lang="en">
     <head>
         <meta charset="utf-8">
 
@@ -12,18 +12,15 @@
 
         
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/bootstrap.min.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
 
 
 <script>hljs.initHighlightingOnLoad();</script>
 
     </head>
     <body>
-        <div class="column">
+        <div class="column container">
 
 <header class="header">
     <a href="/" class="title">A CodeSmith ⌘</a>
@@ -31,10 +28,10 @@
 </header>
 
 
-<section id="main">
+<section id="main" class="col-md-10">
     <header class="post-header">
       <p class="post-title"><a href="https://quxiaowei.github.io/post/python_async/">Python 异步协程 Coroutine </a></p>
-      <p class="post-meta">2016 / 7 / 20</p>
+      <p class="post-meta">2016年7月20日</p>
     </header>
     <article itemprop="articleBody" id="content">
        <p>tornado 以异步响应为特色，据说是以 generator 实现的，之前简单研究过，根据原理写了一段简陋的演示代码。3.5 之后 python <del>增加了async 关键字，就不需要自己实现了</del>。这段代码是实现一个异步响应多个链接 socket server。有两个关键点：</p>

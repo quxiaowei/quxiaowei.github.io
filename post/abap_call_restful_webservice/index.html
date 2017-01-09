@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-US">
+<html lang="en">
     <head>
         <meta charset="utf-8">
 
@@ -12,18 +12,15 @@
 
         
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/bootstrap.min.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
 
 
 <script>hljs.initHighlightingOnLoad();</script>
 
     </head>
     <body>
-        <div class="column">
+        <div class="column container">
 
 <header class="header">
     <a href="/" class="title">A CodeSmith ⌘</a>
@@ -31,10 +28,10 @@
 </header>
 
 
-<section id="main">
+<section id="main" class="col-md-10">
     <header class="post-header">
       <p class="post-title"><a href="https://quxiaowei.github.io/post/abap_call_restful_webservice/">ABAP 调用 RESTful Web Service </a></p>
-      <p class="post-meta">2016 / 7 / 19</p>
+      <p class="post-meta">2016年7月19日</p>
     </header>
     <article itemprop="articleBody" id="content">
        
@@ -43,7 +40,7 @@
 <p>哎！一片干的掉渣的文章。</p>
 </blockquote>
 
-<h2 id="关于rest">关于REST</h2>
+<h4 id="关于rest">关于REST</h4>
 
 <p>REST 是基于 HTTP 的 Web Service 架构，URL 表示资源，HTTP method: GET, POST, DELETE 等等，表示发送，收取，删除等动作。我们是从第三方接收资源，所以用 GET。</p>
 
@@ -53,18 +50,18 @@
 
 <p>以 <code>http://example/credit/20160516/0000001880/1380</code> 为例，其中 <code>20160516</code> 代表日期，<code>0000001880</code> 代表客户，<code>1380</code> 代表公司，这些作为 Web Service 的参数发给接口。</p>
 
-<h2 id="http调用">HTTP调用</h2>
+<h4 id="http调用">HTTP调用</h4>
 
 <p>ABAP 有许多发送 HTTP GET 请求的方法。我用的是函数: <code>HTTP_GET</code>。注意设定超时限制，防止网络不通时程序卡死。</p>
 
 <pre><code class="language-ABAP">DATA: status(3) TYPE c ,
       url TYPE c LENGTH 200,
       error TYPE string.
-        
+
 DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &quot; 返回内容
       &quot; HTTP header
-      response_headers TYPE TABLE OF text100 WITH HEADER LINE. 
-        
+      response_headers TYPE TABLE OF text100 WITH HEADER LINE.
+
 url = |http://example/credit/{ p_datum }/{ p_customer }/{ p_company }| .
 
 CALL FUNCTION 'HTTP_GET'
@@ -93,7 +90,7 @@ ELSE.
 ENDIF.
 </code></pre>
 
-<h2 id="decode">Decode</h2>
+<h4 id="decode">Decode</h4>
 
 <p>返回内容的编码可能与 Sap 不兼容，那么需要转码。具体编码信息在 HTTP 头里。
 以常见的 UTF-8 为例。</p>
@@ -104,7 +101,7 @@ ENDIF.
 DATA buffer TYPE xstring.
 DATA v_text TYPE string.&quot;(100) TYPE c.
 DATA v_text_t TYPE string.&quot;(100) TYPE c.
-  
+
 conv = cl_ABAP_conv_in_ce=&gt;create( encoding = 'UTF-8' ).
 LOOP AT response.
   buffer = response.
@@ -113,8 +110,8 @@ LOOP AT response.
             EXPORTING input = buffer
             IMPORTING data = v_text_t ).
       CONCATENATE v_text v_text_t INTO v_text.
-    CATCH cx_sy_conversion_codepage 
-          cx_sy_codepage_converter_init 
+    CATCH cx_sy_conversion_codepage
+          cx_sy_codepage_converter_init
           cx_parameter_invalid_type.
       p_subrc = 4.
       p_message = '转码失败！'.
@@ -123,7 +120,7 @@ LOOP AT response.
 ENDLOOP.
 </code></pre>
 
-<h2 id="json映射到abap">JSON映射到ABAP</h2>
+<h4 id="json映射到abap">JSON映射到ABAP</h4>
 
 <p>常见的 Web Service 返回格式有 XML 和 JSON 两种。处理 XML 的方法和 JSON 大致相同，只是 “转换”的写法不同。以 JSON 为例：</p>
 
@@ -134,7 +131,7 @@ ENDLOOP.
     &quot;result&quot;:0.0122,
     &quot;errorCode&quot;:&quot;0&quot;,
     &quot;errorMessage&quot;:&quot;&quot;
-    }, 
+    },
   {
     &quot;result&quot;:2.01,
     &quot;errorCode&quot;:&quot;0&quot;,
@@ -164,7 +161,7 @@ ENDTRY.
 
 <p><code>z_test_json1</code> 是自定义的 “转换”，将 JSON 中的数据映射到 ABAP 内表或工作区里，因为过程涉及类型转换，所以需要 <code>try catch</code> 来捕捉异常。“转换”完成后，JSON 中的数据会回填到 <code>it_result</code> 内表中，整个解析的流程也就完成了。</p>
 
-<h2 id="转换-的写法">“转换”的写法</h2>
+<h4 id="转换-的写法">“转换”的写法</h4>
 
 <ol>
 <li><p>创建“转换” <img src="/img/transform1.png" alt="创建“转换”" /></p></li>
@@ -215,7 +212,7 @@ ENDTRY.
 <p>JSON 对象内的字段不要求和 ABAP 类型字段顺序一致</p>
 </blockquote>
 
-<h2 id="abap-to-json">ABAP to JSON</h2>
+<h4 id="abap-to-json">ABAP to JSON</h4>
 
 <p>我们已经能够将 JSON 映射到 ABAP 里，下面我们试着将 ABAP 再转回 JSON。首先，我们将上面的 <code>call transformation</code> 中的 <code>source</code> 和 <code>result</code> 对调，反向使用“转换”。</p>
 
@@ -262,7 +259,7 @@ v_text = cl_ABAP_codepage=&gt;convert_from( json ).
     &quot;result&quot;:0.01,
     &quot;errorCode&quot;:&quot;0&quot;,
     &quot;errorMessage&quot;:&quot;&quot;
-    }, 
+    },
   {
     &quot;result&quot;:2.01,
     &quot;errorCode&quot;:&quot;0&quot;,

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-US">
+<html lang="en">
     <head>
         <meta charset="utf-8">
 
@@ -12,18 +12,15 @@
 
         
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/bootstrap.min.css">
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
 
 
 <script>hljs.initHighlightingOnLoad();</script>
 
     </head>
     <body>
-        <div class="column">
+        <div class="column container">
 
 <header class="header">
     <a href="/" class="title">A CodeSmith ⌘</a>
@@ -31,37 +28,32 @@
 </header>
 
 
-<section id="main">
+<section id="main" class="col-md-10">
     <header class="post-header">
       <p class="post-title"><a href="https://quxiaowei.github.io/post/ffmpeg_cheatsheet/">FFMPEG Cheatsheet </a></p>
-      <p class="post-meta">2016 / 7 / 15</p>
+      <p class="post-meta">2016年7月15日</p>
     </header>
     <article itemprop="articleBody" id="content">
        <p><code>-vcodec</code> <code>-acodec</code> 视屏，音频编码 <code>copy</code> 拷贝源文件</p>
 
 <p>合并视屏</p>
 
-<pre><code class="language-bash">ffmpeg -f concat -i buffer_list -c copy output.mkv
-</code></pre>
+<p><kbd>ffmpeg -f concat -i buffer_list -c copy output.mkv</kbd></p>
 
 <p>截取视频</p>
 
-<pre><code class="language-bash">ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4
-</code></pre>
+<p><kbd>ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4</kbd></p>
 
 <p><code>-ss</code> 开始时间 <code>-t</code> 时长</p>
 
 <p>缩小视屏</p>
 
-<pre><code class="language-bash">ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4
-</code></pre>
+<p><kbd>ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4</kbd></p>
 
 <p>裁剪视屏</p>
 
-<pre><code class="language-bash">ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4
-</code></pre>
-
-<p><code>crop=width:height:x:y</code></p>
+<p><kbd>ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4</kbd>
+<code>crop=width:height:x:y</code></p>
 
 <p>『 終 』</p>
     </article>

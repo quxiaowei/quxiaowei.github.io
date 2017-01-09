@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on A CodeSmith ⌘</title>
-    <link>https://quxiaowei.github.io/post/</link>
+    <link>https://quxiaowei.github.io/post/index.xml</link>
     <description>Recent content in Posts on A CodeSmith ⌘</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
@@ -24,18 +24,18 @@
 &lt;p&gt;首先要搞到一个网址，以供外部访问。&lt;code&gt;SICF&lt;/code&gt; 创建一个子服务，需要注意两个地方：&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;登陆数据（这个地方我还没怎么搞明白，我就用的自己的帐号、密码，导致密码被锁）&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;登陆数据（这个地方我还没怎么搞明白，我就用的自己的帐号、密码，导致密码被锁）&lt;/li&gt;
 &lt;li&gt;处理器清单，这里的处理填入的类就是我们处理请求的地方&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;这个类的注意点&lt;/strong&gt;（可能因系统版本不同）&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;超类：&lt;code&gt;CL_REST_HTTP_HANDLER&lt;/code&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;超类：&lt;code&gt;CL_REST_HTTP_HANDLER&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;接口：&lt;code&gt;IF_HTTP_EXTENSION&lt;/code&gt;， &lt;code&gt;IF_REST_APPLICATION&lt;/code&gt;， &lt;code&gt;IF_REST_HANDLER&lt;/code&gt;  这三个接口是 &lt;strong&gt;必须的&lt;/strong&gt;。&lt;code&gt;IF_REST_RESOURCE&lt;/code&gt; 这个似乎可以分别处理 &lt;code&gt;GET&lt;/code&gt;, &lt;code&gt;POST&lt;/code&gt; 等方法，但可能是版本的问题，我这边没用到&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
+&lt;h4 id=&#34;方法&#34;&gt;方法&lt;/h4&gt;
 
 &lt;p&gt;&lt;code&gt;IF_REST_APPLICATION~GET_ROOT_HANDLER&lt;/code&gt; 用来绑定不同的网址到不同的类，还有模板变量等等。关于模板的语法，可以去 &lt;code&gt;CL_REST_ROUTER~FIND_MATCH&lt;/code&gt; 的代码中注释中找到。&lt;a href=&#34;https://jsr311.dev.java.net/nonav/releases/1.1/spec/spec3.html&#34;&gt;参考&lt;/a&gt; 似乎是个很古老的网页了。&lt;/p&gt;
 
@@ -119,7 +119,7 @@
 &lt;p&gt;哎！一片干的掉渣的文章。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;关于rest&#34;&gt;关于REST&lt;/h2&gt;
+&lt;h4 id=&#34;关于rest&#34;&gt;关于REST&lt;/h4&gt;
 
 &lt;p&gt;REST 是基于 HTTP 的 Web Service 架构，URL 表示资源，HTTP method: GET, POST, DELETE 等等，表示发送，收取，删除等动作。我们是从第三方接收资源，所以用 GET。&lt;/p&gt;
 
@@ -129,18 +129,18 @@
 
 &lt;p&gt;以 &lt;code&gt;http://example/credit/20160516/0000001880/1380&lt;/code&gt; 为例，其中 &lt;code&gt;20160516&lt;/code&gt; 代表日期，&lt;code&gt;0000001880&lt;/code&gt; 代表客户，&lt;code&gt;1380&lt;/code&gt; 代表公司，这些作为 Web Service 的参数发给接口。&lt;/p&gt;
 
-&lt;h2 id=&#34;http调用&#34;&gt;HTTP调用&lt;/h2&gt;
+&lt;h4 id=&#34;http调用&#34;&gt;HTTP调用&lt;/h4&gt;
 
 &lt;p&gt;ABAP 有许多发送 HTTP GET 请求的方法。我用的是函数: &lt;code&gt;HTTP_GET&lt;/code&gt;。注意设定超时限制，防止网络不通时程序卡死。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-ABAP&#34;&gt;DATA: status(3) TYPE c ,
       url TYPE c LENGTH 200,
       error TYPE string.
-        
+
 DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &amp;quot; 返回内容
       &amp;quot; HTTP header
-      response_headers TYPE TABLE OF text100 WITH HEADER LINE. 
-        
+      response_headers TYPE TABLE OF text100 WITH HEADER LINE.
+
 url = |http://example/credit/{ p_datum }/{ p_customer }/{ p_company }| .
 
 CALL FUNCTION &#39;HTTP_GET&#39;
@@ -169,7 +169,7 @@ ELSE.
 ENDIF.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;decode&#34;&gt;Decode&lt;/h2&gt;
+&lt;h4 id=&#34;decode&#34;&gt;Decode&lt;/h4&gt;
 
 &lt;p&gt;返回内容的编码可能与 Sap 不兼容，那么需要转码。具体编码信息在 HTTP 头里。
 以常见的 UTF-8 为例。&lt;/p&gt;
@@ -180,7 +180,7 @@ ENDIF.
 DATA buffer TYPE xstring.
 DATA v_text TYPE string.&amp;quot;(100) TYPE c.
 DATA v_text_t TYPE string.&amp;quot;(100) TYPE c.
-  
+
 conv = cl_ABAP_conv_in_ce=&amp;gt;create( encoding = &#39;UTF-8&#39; ).
 LOOP AT response.
   buffer = response.
@@ -189,8 +189,8 @@ LOOP AT response.
             EXPORTING input = buffer
             IMPORTING data = v_text_t ).
       CONCATENATE v_text v_text_t INTO v_text.
-    CATCH cx_sy_conversion_codepage 
-          cx_sy_codepage_converter_init 
+    CATCH cx_sy_conversion_codepage
+          cx_sy_codepage_converter_init
           cx_parameter_invalid_type.
       p_subrc = 4.
       p_message = &#39;转码失败！&#39;.
@@ -199,7 +199,7 @@ LOOP AT response.
 ENDLOOP.
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;json映射到abap&#34;&gt;JSON映射到ABAP&lt;/h2&gt;
+&lt;h4 id=&#34;json映射到abap&#34;&gt;JSON映射到ABAP&lt;/h4&gt;
 
 &lt;p&gt;常见的 Web Service 返回格式有 XML 和 JSON 两种。处理 XML 的方法和 JSON 大致相同，只是 “转换”的写法不同。以 JSON 为例：&lt;/p&gt;
 
@@ -210,7 +210,7 @@ ENDLOOP.
     &amp;quot;result&amp;quot;:0.0122,
     &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
     &amp;quot;errorMessage&amp;quot;:&amp;quot;&amp;quot;
-    }, 
+    },
   {
     &amp;quot;result&amp;quot;:2.01,
     &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
@@ -240,7 +240,7 @@ ENDTRY.
 
 &lt;p&gt;&lt;code&gt;z_test_json1&lt;/code&gt; 是自定义的 “转换”，将 JSON 中的数据映射到 ABAP 内表或工作区里，因为过程涉及类型转换，所以需要 &lt;code&gt;try catch&lt;/code&gt; 来捕捉异常。“转换”完成后，JSON 中的数据会回填到 &lt;code&gt;it_result&lt;/code&gt; 内表中，整个解析的流程也就完成了。&lt;/p&gt;
 
-&lt;h2 id=&#34;转换-的写法&#34;&gt;“转换”的写法&lt;/h2&gt;
+&lt;h4 id=&#34;转换-的写法&#34;&gt;“转换”的写法&lt;/h4&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;创建“转换” &lt;img src=&#34;https://quxiaowei.github.io/img/transform1.png&#34; alt=&#34;创建“转换”&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
@@ -291,7 +291,7 @@ ENDTRY.
 &lt;p&gt;JSON 对象内的字段不要求和 ABAP 类型字段顺序一致&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;abap-to-json&#34;&gt;ABAP to JSON&lt;/h2&gt;
+&lt;h4 id=&#34;abap-to-json&#34;&gt;ABAP to JSON&lt;/h4&gt;
 
 &lt;p&gt;我们已经能够将 JSON 映射到 ABAP 里，下面我们试着将 ABAP 再转回 JSON。首先，我们将上面的 &lt;code&gt;call transformation&lt;/code&gt; 中的 &lt;code&gt;source&lt;/code&gt; 和 &lt;code&gt;result&lt;/code&gt; 对调，反向使用“转换”。&lt;/p&gt;
 
@@ -338,7 +338,7 @@ v_text = cl_ABAP_codepage=&amp;gt;convert_from( json ).
     &amp;quot;result&amp;quot;:0.01,
     &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
     &amp;quot;errorMessage&amp;quot;:&amp;quot;&amp;quot;
-    }, 
+    },
   {
     &amp;quot;result&amp;quot;:2.01,
     &amp;quot;errorCode&amp;quot;:&amp;quot;0&amp;quot;,
@@ -361,27 +361,22 @@ v_text = cl_ABAP_codepage=&amp;gt;convert_from( json ).
 
 &lt;p&gt;合并视屏&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -f concat -i buffer_list -c copy output.mkv
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;kbd&gt;ffmpeg -f concat -i buffer_list -c copy output.mkv&lt;/kbd&gt;&lt;/p&gt;
 
 &lt;p&gt;截取视频&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;kbd&gt;ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4&lt;/kbd&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;-ss&lt;/code&gt; 开始时间 &lt;code&gt;-t&lt;/code&gt; 时长&lt;/p&gt;
 
 &lt;p&gt;缩小视屏&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;kbd&gt;ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4&lt;/kbd&gt;&lt;/p&gt;
 
 &lt;p&gt;裁剪视屏&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;crop=width:height:x:y&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;kbd&gt;ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4&lt;/kbd&gt;
+&lt;code&gt;crop=width:height:x:y&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -467,13 +462,13 @@ rm -f buffer_list
 
 &lt;p&gt;主要有两个问题：&lt;/p&gt;
 
-&lt;h2 id=&#34;1-谁是真正的穆斯林&#34;&gt;1 谁是真正的穆斯林？&lt;/h2&gt;
+&lt;h4 id=&#34;1-谁是真正的穆斯林&#34;&gt;1 谁是真正的穆斯林？&lt;/h4&gt;
 
 &lt;p&gt;在我宗教这种小白看来，无疑存在两种穆斯林：坏的穆斯林，不坏的穆斯林。两边无疑信奉《古兰经》和穆罕默德，两边都认为自己是真正的穆斯林，指责对方不是真正的穆斯林。显然不能指望着从任何一方的嘴中得到答案。大多数善良人们应该和我一样认同不坏的甚至的好的穆斯林了（注意我用的是「认同」）。那究竟是，真正的穆斯林恰好是「不坏」的那个？还是善意影响了我们的判断？很难在这个选择题上得到「客观」的答案。而我却早已给出「好」与「坏」的答案。指导我们作出选择的东西是道德，道德的优先级显然是高于宗教的。而本题的答案是，我们不关心谁是真正的这种问题。谁是坏的我们就要反对谁。&lt;/p&gt;
 
 &lt;p&gt;牵出宗教和道德的问题，总有人说宗教能够规范人的道德，就像我们之前已经基于道德对宗教作出「好」与「坏」的判断，可见道德是早就存在于我们的心里的。而宗教至于道德的作用，正如当代哲学家伯纳德 ·威廉姆斯的一句名言所述 ，是 「多此一举 」（摘自《我们时代的伦理学》）。在我看看来不仅仅是「多此一举」在我看来有时还会起到反作用（基督教历史上也不鲜见）。换句话说，假如宗教教授坏的道德，作为信众能够指责，退出嘛！这显然和某些宗教树立绝对权威是相矛盾而不被允许的。&lt;/p&gt;
 
-&lt;h2 id=&#34;2-真正的穆斯林是真实存在的吗&#34;&gt;2 真正的穆斯林是真实存在的吗？&lt;/h2&gt;
+&lt;h4 id=&#34;2-真正的穆斯林是真实存在的吗&#34;&gt;2 真正的穆斯林是真实存在的吗？&lt;/h4&gt;
 
 &lt;p&gt;在我看来真正的穆斯林并不存在，而只是人们脑中一个概念和善意地一厢情愿。宗教是存在于人们脑中的，每一个信众的行动构成这个宗教的。「好」与「坏」的两方都是遵循《古兰经》的，而显然坏的一方的行为与字面的教诲更为相符，我们都批判教条主义，而基于通一段文本，两种不同阐释我们是无法判断那种是「正宗」那种是「歪曲」的，这两种都是通过人脑加工过产物。我们之所以选择「好」同样也是我们脑中的 道德在起作用，而不是因为「好」的一方更「真正」。&lt;/p&gt;
 </description>
