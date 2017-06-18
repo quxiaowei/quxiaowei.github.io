@@ -10,10 +10,10 @@ html{
 
 body {
     min-height: 110%;
-    line-height: 120%;
-    color: #555;
+    line-height: 180%;
+    color: #333;
     font-size: 14px;
-    font-family: 'Source Sans Pro', 'Helvetica Neue', 
+    font-family:
 	-apple-system, BlinkMacSystemFont,
     "Helvetica Neue","PingFang-SC-Regular","STHeiti",
     "Helvetica","Arial","Verdana","sans-serif","苹方","宋体","Microsoft YaHei";
@@ -66,12 +66,12 @@ u {
 
 .title {
     /* font-family: "Roboto Mono", Helvetica, serif; */
-    font-size: 16px;
+    font-size: 18px;
 	font-weight: bold;
 	font-family: "Lobster";
 	color:#242C55;
-	color:black;
-	text-decoration:underline;
+	color:rgb(55,173,112);
+	text-decoration:none;
 }
 
 .site-description {
@@ -157,7 +157,7 @@ p {
 }
 
 article#content p {
-	margin:15px 0;
+	margin:20px 0;
     padding-left: 0px;
 }
 
@@ -245,10 +245,11 @@ h2 {
 }
 
 h4 {
-    padding: 2em 0 0.8em;
+    padding: 1.5em 0 0.8em;
     margin-bottom: 0.8em;
 	border-bottom: 1px solid rgb(200,200,200);
 	font-size:18px;
+	font-weight:normal;
 }
 
 /* table styling */
