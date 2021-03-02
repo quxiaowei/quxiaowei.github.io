@@ -1,16 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on A CodeSmith</title>
+    <title>Posts on ☐☐☐☐</title>
     <link>https://quxiaowei.github.io/post/</link>
-    <description>Recent content in Posts on A CodeSmith</description>
+    <description>Recent content in Posts on ☐☐☐☐</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://quxiaowei.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://quxiaowei.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ABAP 发布 RESTful Web Service</title>
       <link>https://quxiaowei.github.io/post/abap_provide_restful_ws/</link>
@@ -21,10 +17,8 @@
  首先要搞到一个网址，以供外部访问。SICF 创建一个子服务，需要注意两个地方：
  登陆数据（这个地方我还没怎么搞明白，我就用的自己的帐号、密码，导致密码被锁） 处理器清单，这里的处理填入的类就是我们处理请求的地方  这个类的注意点（可能因系统版本不同）
  超类：CL_REST_HTTP_HANDLER 接口：IF_HTTP_EXTENSION， IF_REST_APPLICATION， IF_REST_HANDLER 这三个接口是 必须的。IF_REST_RESOURCE 这个似乎可以分别处理 GET, POST 等方法，但可能是版本的问题，我这边没用到  方法 IF_REST_APPLICATION~GET_ROOT_HANDLER 用来绑定不同的网址到不同的类，还有模板变量等等。关于模板的语法，可以去 CL_REST_ROUTER~FIND_MATCH 的代码中注释中找到。参考 似乎是个很古老的网页了。
- 
-实现 IF_REST_HANDLER~HANDLE 方法
- 
-注意: 有些传入的参数需要 unescape 一下，对应的在调用的时候要 escape 下 cl_http_utility=&amp;gt;if_http_utility~unescape_url cl_http_utility=&amp;gt;if_http_utility~escape_url 这个类里还提供一些其他方法，像 base64 等。
+ 实现 IF_REST_HANDLER~HANDLE 方法
+ 注意: 有些传入的参数需要 unescape 一下，对应的在调用的时候要 escape 下 cl_http_utility=&amp;gt;if_http_utility~unescape_url cl_http_utility=&amp;gt;if_http_utility~escape_url 这个类里还提供一些其他方法，像 base64 等。
  这里我只处理了 get 请求，没有区分开来，这点还没怎么研究。可以把 IO_REQUEST, IO_RESPONSE 可以放在类属性里，供 get、post 等方法使用。可以看下 IF_HTTP_EXTENSION~HANDLE_REQUEST 的代码，会有帮助。
  最后给个参考 http://scn.sap.com/docs/DOC-51570 ，因为系统版本不同，所以具体代码对我没有太大参考价值，但能提供大概的提示。
 - 前篇 &amp;ldquo;ABAP 调用 RESTful Web Service&amp;rdquo;</description>
@@ -47,10 +41,10 @@
       
       <guid>https://quxiaowei.github.io/post/python_async/</guid>
       <description>tornado 以异步响应为特色，据说是以 generator 实现的，之前简单研究过，根据原理写了一段简陋的演示代码。3.5 之后 python 增加了async 关键字，就不需要自己实现了。这段代码是实现一个异步响应多个链接 socket server。有两个关键点：
- 用 decorator 把 generator 封装在 future 里 在 loop 中调用 generator 的 next，send 方法，传递前一步的结果  2016/09/29 更新
+ 用 decorator 把 generator 封装在 future 里 在 loop 中调用 generator 的 next，send 方法，传递前一步的结果   2016/09/29 更新
 最近在重看异步相关的内容，发现以前的理解是错误的。内容比较多，这里列出几个我理解中的错误点 和 我认为的关键点。
- async | await 关键字只是一个 接口，只是一个 接口，它并不能将同步的代码变成异步 ，异步需要其他的库来实现，比如标准的 asyncio 库、tornado、还有 David Beazley 写的一个实验性 curio 库（我目前正在看他的代码）。
- async def: 就像 yield 催生了 generator 类型， async def 催生了 coroutine 类型（叫做 native coroutine 以区别于 3.5 之前的 coroutine ）。await 后必须跟着一个 awaitable 的对象，即实现 __await()__ 方法的对象，至于这个对象是用 future 还是其他什么东西并不重要。大部分库基于类似 future 定义了自己的 task，每家的构建都不同，但实质是通过 generator | send 机制 实现回调。</description>
+  async | await 关键字只是一个 接口，只是一个 接口，它并不能将同步的代码变成异步，异步需要其他的库来实现，比如标准的 asyncio 库、tornado、还有 David Beazley 写的一个实验性 curio 库（我目前正在看他的代码）。
+  async def: 就像 yield 催生了 generator 类型， async def 催生了 coroutine 类型（叫做 native coroutine 以区别于 3.5 之前的 coroutine ）。await 后必须跟着一个 awaitable 的对象，即实现 __await()__ 方法的对象，至于这个对象是用 future 还是其他什么东西并不重要。大部分库基于类似 future 定义了自己的 task，每家的构建都不同，但实质是通过 generator | send 机制 实现回调。</description>
     </item>
     
     <item>
@@ -64,7 +58,7 @@
  SOAP 是另一种基于 HTTP 的 Web Service 协议，不在本文范围内。
  以 http://example/credit/20160516/0000001880/1380 为例，其中 20160516 代表日期，0000001880 代表客户，1380 代表公司，这些作为 Web Service 的参数发给接口。
 HTTP调用 ABAP 有许多发送 HTTP GET 请求的方法。我用的是函数: HTTP_GET。注意设定超时限制，防止网络不通时程序卡死。
-DATA: status(3) TYPE c , url TYPE c LENGTH 200, error TYPE string. DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &amp;quot; 返回内容 &amp;quot; HTTP header response_headers TYPE TABLE OF text100 WITH HEADER LINE.</description>
+DATA: status(3) TYPE c , url TYPE c LENGTH 200, error TYPE string. DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &amp;#34; 返回内容  &amp;#34; HTTP header  response_headers TYPE TABLE OF text100 WITH HEADER LINE.</description>
     </item>
     
     <item>
@@ -75,14 +69,11 @@ DATA: status(3) TYPE c , url TYPE c LENGTH 200, error TYPE string. DATA: respons
       <guid>https://quxiaowei.github.io/post/ffmpeg_cheatsheet/</guid>
       <description>-vcodec -acodec 视屏，音频编码 copy 拷贝源文件
 合并视屏
-ffmpeg -f concat -i buffer_list -c copy output.mkv
-截取视频
-ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4
--ss 开始时间 -t 时长
+ffmpeg -f concat -i buffer_list -c copy output.mkv截取视频
+ffmpeg -i source.avi -ss 00:01:35 -t 00:47:13 -vcodec copy output.mp4-ss 开始时间 -t 时长
 缩小视屏
-ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4
-裁剪视屏
-ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4 crop=width:height:x:y</description>
+ffmpeg -i a.mp4 -vf scale=853:480 -acodec acc -vcodec h264 out.mp4裁剪视屏
+ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4crop=width:height:x:y</description>
     </item>
     
     <item>
@@ -93,9 +84,9 @@ ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4 crop=width:height:x:
       <guid>https://quxiaowei.github.io/post/python_no_nested_anymore/</guid>
       <description>最近在和别的系统测试 Rest Web Service 的接口，用 python 写了单元测试脚本 (Gist)。却发现nested不见了，查了替代方案记下。
 with 写法：
-with open(&#39;D:\\input.txt&#39;) as file1: with open(&#39;D:\\output.txt&#39; &#39;w+&#39;) as file2: for line in file1.readline(): file2.write(line+&#39;\n&#39;)  nested() 写法（caveat: 已经不可用了）：
-from contextlib import nested with (open(&#39;D:\\input.txt&#39;), open(&#39;D:\\output.txt&#39;, &#39;w+&#39;)) \ as (file1, file2): for line in file1.readline(): file2.write(line+&#39;\n&#39;)  新写法：
-from contextlib import ExitStack with ExitStack() as stack: file1 = stack.enter_context(open(&#39;D:\\input.txt&#39;)) file2 = stack.enter_context(open(&#39;D:\\output.txt&#39;, &#39;w+&#39;)) for line in file1.readline(): file2.write(line+&#39;\n&#39;)  其实对于一两个资源来说，直接用 nested-with 的语法写起来还行，用 ExitStack 看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。</description>
+with open(&amp;#39;D:\\input.txt&amp;#39;) as file1: with open(&amp;#39;D:\\output.txt&amp;#39; &amp;#39;w+&amp;#39;) as file2: for line in file1.readline(): file2.write(line+&amp;#39;\n&amp;#39;) nested() 写法（caveat: 已经不可用了）：
+from contextlib import nested with (open(&amp;#39;D:\\input.txt&amp;#39;), open(&amp;#39;D:\\output.txt&amp;#39;, &amp;#39;w+&amp;#39;)) \ as (file1, file2): for line in file1.readline(): file2.write(line+&amp;#39;\n&amp;#39;) 新写法：
+from contextlib import ExitStack with ExitStack() as stack: file1 = stack.enter_context(open(&amp;#39;D:\\input.txt&amp;#39;)) file2 = stack.enter_context(open(&amp;#39;D:\\output.txt&amp;#39;, &amp;#39;w+&amp;#39;)) for line in file1.readline(): file2.write(line+&amp;#39;\n&amp;#39;) 其实对于一两个资源来说，直接用 nested-with 的语法写起来还行，用 ExitStack 看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。</description>
     </item>
     
     <item>
@@ -105,7 +96,7 @@ from contextlib import ExitStack with ExitStack() as stack: file1 = stack.enter_
       
       <guid>https://quxiaowei.github.io/post/bilibili_script/</guid>
       <description>周末写了个zsh脚本，从B站上下载《不能结婚的男人》，贴上代码。
-for i in {1..12} do url=http://www.bilibili.com/video/av3794937/index_$i.html echo $url youtube-dl -o &amp;quot;SeGmEnT-$i-%(playlist_index)s.%(ext)s&amp;quot; $url rm -f buffer_list touch buffer_list for file in $(ls SeGmEnT-$i-*.flv) do echo file &amp;quot;&#39;$file&#39;&amp;quot; &amp;gt;&amp;gt; buffer_list done ffmpeg -f concat -i buffer_list -c copy $i.mkv done rm -f buffer_list  </description>
+for i in {1..12} do url=http://www.bilibili.com/video/av3794937/index_$i.html echo $url youtube-dl -o &amp;#34;SeGmEnT-$i-%(playlist_index)s.%(ext)s&amp;#34; $url rm -f buffer_list touch buffer_list for file in $(ls SeGmEnT-$i-*.flv) do echo file &amp;#34;&amp;#39;$file&amp;#39;&amp;#34; &amp;gt;&amp;gt; buffer_list done ffmpeg -f concat -i buffer_list -c copy $i.mkv done rm -f buffer_list </description>
     </item>
     
     <item>
@@ -119,8 +110,7 @@ for i in {1..12} do url=http://www.bilibili.com/video/av3794937/index_$i.html ec
  知识，智力 &amp;gt; 构成对权威的挑战 &amp;gt; 有可能形成自负，傲狂 &amp;gt; 不神圣，不道德 &amp;gt; 罪恶
  假如神是无所不在，且绝对正确的，那人们所要做的就只有对神的绝对热爱，而任何对尝试对世界（神的创造）的探索，都构成对神的怀疑、不信任，所以是狂妄、罪恶的，甚至招来灾祸。探索首先是不必要的，其次探索可能带来不同的观点，这种观点可能与神的意志不一致，是歧途，是诱惑，所以得杜绝。从这种思路中不难看出一种愚昧的奴性，胆怯的意味。
 理性与感性 同样的前提我们可以得到一个不同结论：就是对世界的探索，对知识的追求，正是为了对所谓神的更深入的理解和更深刻的热爱，威廉和他所崇拜罗杰培根大概就是这么一种思路。
-上下文中，乌贝尔蒂提出了一个关于「理性会导致心灵的语言能力枯竭」的观点，这里我姑且简化成：「他认为理性和感性是对立的，即理性会损坏感性」。这里的感性构成了对某种神秘存在的神秘体验（感觉像嗑药一般的东西）而理性会破坏这种盲目而热烈的情感，因此是不好的。但真的是这样吗？
-我联想到了道金斯《The Magic of Reality》。古人见到七色彩虹也许会赞美圣人对应的七种美德。而理解彩虹形成的原理，并不会损坏我们欣赏彩虹的乐趣。归根结底，并不是什么破坏了趣味，而是你只会接受前人二手趣味却无法从客观世界中发现新的趣味，是你自己没有趣味。</description>
+上下文中，乌贝尔蒂提出了一个关于「理性会导致心灵的语言能力枯竭」的观点，这里我姑且简化成：「他认为理性和感性是对立的，即理性会损坏感性」。这里的感性构成了对某种神秘存在的神秘体验（感觉像嗑药一般的东西）而理性会破坏这种盲目而热烈的情感，因此是不好的。但真的是这样吗？我联想到了道金斯《The Magic of Reality》。古人见到七色彩虹也许会赞美圣人对应的七种美德。而理解彩虹形成的原理，并不会损坏我们欣赏彩虹的乐趣。归根结底，并不是什么破坏了趣味，而是你只会接受前人二手趣味却无法从客观世界中发现新的趣味，是你自己没有趣味。</description>
     </item>
     
     <item>

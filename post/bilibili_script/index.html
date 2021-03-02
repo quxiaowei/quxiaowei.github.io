@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <base href="https://quxiaowei.github.io">
-		<title>A CodeSmith</title>
-        <link rel="canonical" href="https://quxiaowei.github.io/post/bilibili_script/">
-        <link href="" rel="alternate" type="application/rss+xml" title="A CodeSmith"/>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
-        
+    
+
+    <base href="https://quxiaowei.github.io">
+    <title>☐☐☐☐</title>
+    <link rel="canonical" href="https://quxiaowei.github.io/post/bilibili_script/">
+    
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
+<link rel="stylesheet" href="https://quxiaowei.github.io/css/post.css">
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./script/site.js"></script>
+</head>
 
-    </head>
-    <body>
-        <div class="column container">
-
+<body>
+    <div class="column container">
 <header class="header">
-    <a href="/" class="title">A CodeSmith</a>
+    <a href="/" class="title">☐☐☐☐</a>
     
 </header>
 
@@ -36,44 +35,32 @@
     </header>
     <article itemprop="articleBody" id="content">
        <p>周末写了个zsh脚本，从B站上下载《不能结婚的男人》，贴上代码。</p>
-
-<pre><code class="language-bash">for i in {1..12}
-do
-    url=http://www.bilibili.com/video/av3794937/index_$i.html
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>1..12<span style="color:#f92672">}</span>
+<span style="color:#66d9ef">do</span>
+    url<span style="color:#f92672">=</span>http://www.bilibili.com/video/av3794937/index_$i.html
     echo $url
-    youtube-dl -o &quot;SeGmEnT-$i-%(playlist_index)s.%(ext)s&quot; $url
+    youtube-dl -o <span style="color:#e6db74">&#34;SeGmEnT-</span>$i<span style="color:#e6db74">-%(playlist_index)s.%(ext)s&#34;</span> $url
     rm -f buffer_list
     touch buffer_list
-    for file in $(ls SeGmEnT-$i-*.flv)
-    do
-        echo file &quot;'$file'&quot; &gt;&gt; buffer_list
-    done
+    <span style="color:#66d9ef">for</span> file in <span style="color:#66d9ef">$(</span>ls SeGmEnT-$i-*.flv<span style="color:#66d9ef">)</span>
+    <span style="color:#66d9ef">do</span>
+        echo file <span style="color:#e6db74">&#34;&#39;</span>$file<span style="color:#e6db74">&#39;&#34;</span> &gt;&gt; buffer_list
+    <span style="color:#66d9ef">done</span>
     ffmpeg -f concat -i buffer_list -c copy $i.mkv 
-done
+<span style="color:#66d9ef">done</span>
 rm -f buffer_list
-</code></pre>
-
-
-<p>『 終 』</p>
+</code></pre></div>
+ <p>『 終 』</p>
 
     </article>
 </section>
 
-
 <footer class="bottom-footer">
-  <div class="copyright">
-    <p>
-    
-    <a href="http://creativecommons.org/licenses/by/4.0/" title="Creative Commons Attribution">Some rights reserved</a>;
-    please attribute properly and link back.
-    
-    
-    </p>
-  </div>
+  
 </footer>
 
 <script>
-    renderMathInElement(document.getElementById('main'));
+  renderMathInElement(document.getElementById('main'));
 </script>
 
 </div>
@@ -84,5 +71,5 @@ rm -f buffer_list
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
 </body>
-</html>
 
+</html>

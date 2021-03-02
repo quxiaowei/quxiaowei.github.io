@@ -9,7 +9,7 @@ html{
 }
 
 body {
-    min-height: 110%;
+    min-height: 100%;
     line-height: 180%;
     color: #333;
     font-size: 14px;
@@ -53,10 +53,11 @@ header.header {
     width: 100%;
     padding-bottom: 1.5em;
 	margin-top: 0em;
-	padding-top:20px;
+    padding-top:20px;
+    margin-left: -100px;
 	position:fixed;
 	z-index: 50;
-	background-color: rgba(255, 255, 255, 0.85);
+	background-color: rgba(255, 255, 255, 0);
 }
 
 u {
@@ -66,11 +67,11 @@ u {
 
 .title {
     /* font-family: "Roboto Mono", Helvetica, serif; */
-    font-size: 18px;
+    font-size: 28px;
 	font-weight: bold;
-	font-family: "Lobster";
+	/* font-family: "Lobster"; */
 	color:#242C55;
-	color:rgb(55,173,112);
+	color: black;/*rgb(55,173,112)*/;
 	text-decoration:none;
 }
 
@@ -172,13 +173,6 @@ article#content li p {
 }
 
 /* image styling */
-
-img {
-    width: calc(100% + 40px);
-    margin-left: -20px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
 
 /* link styling */
 
@@ -386,4 +380,39 @@ and (-webkit-min-device-pixel-ratio: 2){
 #return-to-top:hover i {
     color: #fff;
     top: 5px;
+}
+
+#album-page-container{
+    width:800px;
+    color:white;
+}
+
+#album-info-section{
+    padding-top:8%;
+    vertical-align: middle;
+}
+
+#song-list {
+    color:white;
+}
+
+.album-meta{
+    color:white;
+}
+
+img#album-cover{
+    max-width:400px;
+    margin:0;
+    /* float:right; */
+    border-radius: 5px;
+}
+
+.album-title{
+    font-size:20px;
+    color:white;
+}
+
+.album-artist{
+    font-size:20px;
+    color:rgba(255, 255, 255, 0.7)
 }
