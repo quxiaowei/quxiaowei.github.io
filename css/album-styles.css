@@ -1,0 +1,322 @@
+/* single-column styling */
+/* general background styling */
+
+* { padding: 0; margin: 0; }
+
+html{
+    height: 100%;
+    background-color: white;/*#E8F2FD*/; /*#f6f9fa;*/ /*ededed;*/
+}
+
+body {
+    min-height: 100%;
+    line-height: 150%;
+    color: #333;
+    font-size: 16px;
+    font-family:
+	-apple-system, BlinkMacSystemFont,
+    "Helvetica Neue","PingFang-SC-Regular","STHeiti",
+    "Helvetica","Arial","Verdana","sans-serif","苹方","宋体","Microsoft YaHei";
+}
+
+.column {
+    width: 100%;
+    max-width: 760px;
+    min-height: 100%;
+
+    margin: 0px auto;
+
+    padding: 0px 20px 20px;
+    padding-bottom: 5px;
+
+	/*border:1px solid rgba(61, 118, 197, 0.05);*/
+    border-radius: 3px;
+    background-color: white; /*#f5f5f5;*/
+    /*background: linear-gradient(to bottom, rgba(232,242,253,1), white 300px, white);*/
+
+    /*box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.05);*/
+
+    font-family: -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue","PingFang-SC-Regular","STHeiti",
+    "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
+}
+
+/* title/header styling */
+
+header.header {
+    width: 100%;
+    padding-bottom: 1.5em;
+	margin-top: 0em;
+    padding-top:20px;
+    margin-left: -100px;
+	position:fixed;
+	z-index: 50;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+u {
+    text-decoration: none;
+    border-bottom: 1px solid #777;
+}
+
+.title {
+    /* font-family: "Roboto Mono", Helvetica, serif; */
+    font-size: 28px;
+	font-weight: bold;
+	/* font-family: "Lobster"; */
+	color:#242C55;
+	color: black;/*rgb(55,173,112)*/;
+	text-decoration:none;
+}
+
+.site-description {
+    font-size: 12px;
+    color:#76B9F2;
+	color:black;
+}
+
+/* general paragraph styling */
+
+p {
+    line-height: 150%;
+}
+
+/* image styling */
+
+/* link styling */
+
+a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+a:hover {
+    color: #242C55;
+	color: black;
+}
+
+/* list styling */
+
+ul {
+    margin-left: 20px;
+    list-style-type: circle;
+}
+
+ol {
+    margin-left: 20px;
+    list-style-type: decimal;
+}
+
+li {
+    line-height: 150%;
+	margin: 0.5em 0;
+}
+/* blockquote styling */
+
+blockquote {
+    border-left: 4px solid rgb(55,173,112);
+    padding: 0.1em 0.5em;
+	margin: 20px 0;
+    /*margin-left: -10px;
+    margin-right: -10px;*/
+    color: #6e6e6e;
+    background-color: #f5f5f5;
+}
+
+/* hr/bar styling */
+
+hr {
+    margin-bottom: 1.5em;
+    margin-top: 1.5em;
+    border: 0;
+    height: 0;
+    border-top: 1px dashed #aaa;
+}
+
+h2 {
+    font-family: Helvetica, sans-serif;
+	font-size: 16px;
+	margin:2em 0 1em;
+	letter-spacing: 0.2em;
+}
+
+h4 {
+    padding: 1.5em 0 0.8em;
+    margin-bottom: 0.8em;
+	border-bottom: 1px solid rgb(200,200,200);
+	font-size:18px;
+	font-weight:normal;
+}
+
+
+body{
+    display: flex;
+    align-items: center;
+}
+
+section#album-info-section{
+    display: flex;
+    align-items: center;
+}
+
+#album-container{
+    margin-left: auto;
+    margin-right:auto;
+    width:900px;
+    color:white;
+    overflow: auto;;
+}
+
+div#album-cover-container{
+    width:49%;
+    display: inline-block;
+}
+
+div#album-info-container{
+    width:49%;
+    display: inline-block;
+}
+
+div#album-cover-container>div{
+    margin-left: auto;
+    margin-right:5px;
+    max-width:400px;
+    min-width:200px;
+    padding:10px;
+}
+
+div#album-info-container>div{
+    margin-left: 5px;
+    margin-right:auto;
+    max-width:400px;
+    min-width:200px;
+    padding:10px;
+}
+
+img#album-cover{
+    width:100%;
+    margin:0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+#song-list {
+    color:white;
+}
+
+.album-meta{
+    color:white;
+}
+
+.album-title{
+    font-size:20px;
+    font-weight: bold;
+    color:white;
+}
+
+.album-artist{
+    font-size:20px;
+    color:rgba(255, 255, 255, 0.7)
+}
+
+div#navigation{
+    position: fixed;
+    top:5px;
+    left:5px;
+    color:rgba(255, 255, 255, 0.7)
+}
+
+@media screen
+and (max-device-width:900px)
+and (min-device-width:451px){
+    body{
+        width:100%;
+        display: block;
+        align-items:unset;
+    }
+
+    section#album-info-section{
+        display: block;
+        align-items:unset;
+    }
+
+    #album-container{
+        margin-left:0px;
+        margin-right:0px;
+        width:100%;
+        color:white;
+    }
+
+    div#album-cover-container{
+        width:100%;
+        display: block;
+    }
+
+    div#album-info-container{
+        width:100%;
+        display: block;
+    }
+    
+    div#album-cover-container>div{
+        margin-left:auto;
+        margin-right:auto;
+        padding:20px;
+        width: 400px;
+        padding-bottom:10px;
+    }
+
+    div#album-info-container>div{
+        margin-left:auto;
+        margin-right:auto;
+        padding:30px;
+        width: 400px;
+        padding-top:10px;
+    }
+}
+
+@media screen
+and (max-device-width:450px){
+
+    body{
+        width:100%;
+        display: block;
+        align-items:unset;
+    }
+
+    section#album-info-section{
+        display: block;
+        align-items:unset;
+    }
+
+
+    #album-container{
+        width:100%;
+        margin-left:0px;
+        margin-right:0px;
+        color:white;
+    }
+
+    div#album-cover-container{
+        width:100%;
+        display: block;
+    }
+    
+    div#album-info-container{
+        width:100%;
+        display: block;
+    }
+
+    div#album-cover-container>div{
+        margin-left:auto;
+        margin-right:auto;
+        padding:30px;
+        padding-bottom:10px;
+    }
+    
+    div#album-info-container>div{
+        margin-left:auto;
+        margin-right:auto;
+        padding:30px;
+        padding-top:10px;
+    }
+}

@@ -76,7 +76,7 @@
  SOAP 是另一种基于 HTTP 的 Web Service 协议，不在本文范围内。
  以 http://example/credit/20160516/0000001880/1380 为例，其中 20160516 代表日期，0000001880 代表客户，1380 代表公司，这些作为 Web Service 的参数发给接口。
 HTTP调用 ABAP 有许多发送 HTTP GET 请求的方法。我用的是函数: HTTP_GET。注意设定超时限制，防止网络不通时程序卡死。
-DATA: status(3) TYPE c , url TYPE c LENGTH 200, error TYPE string. DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &amp;#34; 返回内容  &amp;#34; HTTP header  response_headers TYPE TABLE OF text100 WITH HEADER LINE.</description>
+DATA: status(3) TYPE c , url TYPE c LENGTH 200, error TYPE string. DATA: response TYPE TABLE OF xtext100 WITH HEADER LINE, &amp;quot; 返回内容 &amp;quot; HTTP header response_headers TYPE TABLE OF text100 WITH HEADER LINE.</description>
     </item>
     
     <item>
@@ -102,9 +102,9 @@ ffmpeg -i a.mp5 -strict -2 -vf crop=1080:1080:0:420 out.mp4crop=width:height:x:y
       <guid>https://quxiaowei.github.io/post/python_no_nested_anymore/</guid>
       <description>最近在和别的系统测试 Rest Web Service 的接口，用 python 写了单元测试脚本 (Gist)。却发现nested不见了，查了替代方案记下。
 with 写法：
-with open(&amp;#39;D:\\input.txt&amp;#39;) as file1: with open(&amp;#39;D:\\output.txt&amp;#39; &amp;#39;w+&amp;#39;) as file2: for line in file1.readline(): file2.write(line+&amp;#39;\n&amp;#39;) nested() 写法（caveat: 已经不可用了）：
-from contextlib import nested with (open(&amp;#39;D:\\input.txt&amp;#39;), open(&amp;#39;D:\\output.txt&amp;#39;, &amp;#39;w+&amp;#39;)) \ as (file1, file2): for line in file1.readline(): file2.write(line+&amp;#39;\n&amp;#39;) 新写法：
-from contextlib import ExitStack with ExitStack() as stack: file1 = stack.enter_context(open(&amp;#39;D:\\input.txt&amp;#39;)) file2 = stack.enter_context(open(&amp;#39;D:\\output.txt&amp;#39;, &amp;#39;w+&amp;#39;)) for line in file1.readline(): file2.write(line+&amp;#39;\n&amp;#39;) 其实对于一两个资源来说，直接用 nested-with 的语法写起来还行，用 ExitStack 看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。</description>
+with open(&#39;D:\\input.txt&#39;) as file1: with open(&#39;D:\\output.txt&#39; &#39;w+&#39;) as file2: for line in file1.readline(): file2.write(line+&#39;\n&#39;) nested() 写法（caveat: 已经不可用了）：
+from contextlib import nested with (open(&#39;D:\\input.txt&#39;), open(&#39;D:\\output.txt&#39;, &#39;w+&#39;)) \ as (file1, file2): for line in file1.readline(): file2.write(line+&#39;\n&#39;) 新写法：
+from contextlib import ExitStack with ExitStack() as stack: file1 = stack.enter_context(open(&#39;D:\\input.txt&#39;)) file2 = stack.enter_context(open(&#39;D:\\output.txt&#39;, &#39;w+&#39;)) for line in file1.readline(): file2.write(line+&#39;\n&#39;) 其实对于一两个资源来说，直接用 nested-with 的语法写起来还行，用 ExitStack 看起来就有点啰嗦了。对于多个资源来说，用ExitStack + list comprehence写起来倒也不麻烦。</description>
     </item>
     
     <item>
@@ -114,7 +114,7 @@ from contextlib import ExitStack with ExitStack() as stack: file1 = stack.enter_
       
       <guid>https://quxiaowei.github.io/post/bilibili_script/</guid>
       <description>周末写了个zsh脚本，从B站上下载《不能结婚的男人》，贴上代码。
-for i in {1..12} do url=http://www.bilibili.com/video/av3794937/index_$i.html echo $url youtube-dl -o &amp;#34;SeGmEnT-$i-%(playlist_index)s.%(ext)s&amp;#34; $url rm -f buffer_list touch buffer_list for file in $(ls SeGmEnT-$i-*.flv) do echo file &amp;#34;&amp;#39;$file&amp;#39;&amp;#34; &amp;gt;&amp;gt; buffer_list done ffmpeg -f concat -i buffer_list -c copy $i.mkv done rm -f buffer_list </description>
+for i in {1..12} do url=http://www.bilibili.com/video/av3794937/index_$i.html echo $url youtube-dl -o &amp;quot;SeGmEnT-$i-%(playlist_index)s.%(ext)s&amp;quot; $url rm -f buffer_list touch buffer_list for file in $(ls SeGmEnT-$i-*.flv) do echo file &amp;quot;&#39;$file&#39;&amp;quot; &amp;gt;&amp;gt; buffer_list done ffmpeg -f concat -i buffer_list -c copy $i.mkv done rm -f buffer_list </description>
     </item>
     
     <item>

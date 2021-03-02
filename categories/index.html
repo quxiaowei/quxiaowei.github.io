@@ -9,7 +9,7 @@
 
     <base href="https://quxiaowei.github.io">
     <title>A CodeSmith</title>
-    <link rel="canonical" href="https://quxiaowei.github.io/post/bilibili_script/">
+    <link rel="canonical" href="https://quxiaowei.github.io/categories/">
     
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://quxiaowei.github.io/css/styles.css">
@@ -30,31 +30,10 @@
 </header>
 
 
-<section id="main" class="col-md-10">
-    <header class="post-header">
-      <p class="post-title">Bilibili 视频抓取脚本 </p>
-      <p class="post-meta">2016年5月24日</p>
-    </header>
-    <article itemprop="articleBody" id="content">
-       <p>周末写了个zsh脚本，从B站上下载《不能结婚的男人》，贴上代码。</p>
-<pre><code>for i in {1..12}
-do
-    url=http://www.bilibili.com/video/av3794937/index_$i.html
-    echo $url
-    youtube-dl -o &quot;SeGmEnT-$i-%(playlist_index)s.%(ext)s&quot; $url
-    rm -f buffer_list
-    touch buffer_list
-    for file in $(ls SeGmEnT-$i-*.flv)
-    do
-        echo file &quot;'$file'&quot; &gt;&gt; buffer_list
-    done
-    ffmpeg -f concat -i buffer_list -c copy $i.mkv 
-done
-rm -f buffer_list
-</code></pre>
- <p>『 終 』</p>
-
-    </article>
+<section id="main">
+    <div>
+        
+    </div>
 </section>
 
 <footer class="bottom-footer">
