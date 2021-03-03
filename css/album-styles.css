@@ -155,6 +155,7 @@ body{
 }
 
 section#album-info-section{
+    margin-top: 10px;
     display: flex;
     align-items: center;
 }
@@ -226,6 +227,20 @@ div#navigation{
     color:rgba(255, 255, 255, 0.7)
 }
 
+div#buttons{
+    width:50px;
+    margin: 0 auto ;
+}
+
+div#navigation a{
+    text-decoration: none;
+}
+
+div#album-info-container li>em{
+    margin-left: 1em;
+    color:tomato;
+}
+
 @media screen
 and (max-device-width:900px)
 and (min-device-width:451px){
@@ -271,6 +286,15 @@ and (min-device-width:451px){
         padding:30px;
         width: 400px;
         padding-top:10px;
+    }
+
+    .album-title{
+        display: inline-block;
+    }
+    
+    .album-artist{
+        display: inline-block;
+        margin-left:.5em;
     }
 }
 
@@ -318,5 +342,14 @@ and (max-device-width:450px){
         margin-right:auto;
         padding:30px;
         padding-top:10px;
+    }
+
+    .album-title{
+        display: inline-block;
+    }
+    
+    .album-artist{
+        display: inline-block;
+        margin-left:.5em;
     }
 }

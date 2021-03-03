@@ -776,3 +776,13 @@ and (-webkit-min-device-pixel-ratio: 2){
     color: #fff;
     top: 5px;
 }
+
+span.menu-bar{
+    margin-left:20px;
+    margin-right:20px;
+    font-size: 20px;
+}
+
+span.menu-bar>a{
+    text-decoration:none;
+}
