@@ -76,7 +76,6 @@ u {
 }
 
 /* general paragraph styling */
-
 p {
     line-height: 150%;
 }
@@ -147,7 +146,6 @@ h4 {
 	font-size:18px;
 	font-weight:normal;
 }
-
 
 body{
     display: flex;
@@ -221,19 +219,47 @@ img#album-cover{
 }
 
 div#navigation{
-    position: fixed;
-    top:5px;
-    left:5px;
-    color:rgba(255, 255, 255, 0.7)
+    /* position: fixed; */
+    width:100%;
+    height:20px;
+    color:rgba(255, 255, 255, 0.5);
 }
 
 div#buttons{
-    width:50px;
+    /* width:50px; */
     margin: 0 auto ;
+}
+
+div#navigation div.left{
+    display: inline-block;
+    width:49%;
+}
+div#navigation div.right{
+    display: inline-block;
+    width:49%;
+}
+
+div.right a{
+    margin-right:0;
+    margin-left:auto;
+    width:20px;
+    display: block;
+}
+
+div.left a{
+    width:20px;
+    display:block;
+    text-align:right;
+    margin-right:auto;
 }
 
 div#navigation a{
     text-decoration: none;
+    color:rgba(255, 255, 255, 0.5);
+}
+
+div#navigation a:hover{
+    color:white;
 }
 
 div#album-info-container li>em{
@@ -245,6 +271,11 @@ div#album-info-container li>em{
 @media screen
 and (max-device-width:900px)
 and (min-device-width:451px){
+
+    div#navigation{
+        position: fixed;
+    }
+
     body{
         width:100%;
         display: block;
@@ -297,10 +328,18 @@ and (min-device-width:451px){
         display: inline-block;
         margin-left:.5em;
     }
+
+    div#navigation{
+        display: flex;
+    }
 }
 
 @media screen
 and (max-device-width:450px){
+
+    div#navigation{
+        position: fixed;
+    }
 
     body{
         width:100%;
