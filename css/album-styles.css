@@ -226,17 +226,17 @@ div#navigation{
 }
 
 div#buttons{
-    /* width:50px; */
+    width:100%;
     margin: 0 auto ;
 }
 
 div#navigation div.left{
-    display: inline-block;
-    width:49%;
+    display:inline-block;
+    width:49.5%;
 }
 div#navigation div.right{
-    display: inline-block;
-    width:49%;
+    display:inline-block;
+    width:49.5%;
 }
 
 div.right a{
@@ -351,7 +351,6 @@ and (max-device-width:450px){
         display: block;
         align-items:unset;
     }
-
 
     #album-container{
         width:100%;
