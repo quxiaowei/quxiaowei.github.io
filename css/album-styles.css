@@ -102,7 +102,7 @@ ul {
 }
 
 ol {
-    margin-left: 20px;
+    margin-left: 2em;
     list-style-type: decimal;
 }
 
@@ -201,7 +201,7 @@ img#album-cover{
 
 #song-list {
     color:white;
-    max-height: 480px;
+    max-height: 500px;
     overflow-y: scroll;
 }
 
@@ -407,9 +407,12 @@ and (max-device-width:450px){
     }
 }
 
-@media (orientation: landscape){
+@media screen 
+and (min-device-width: 900px)
+and (orientation: landscape)
+{
     div#song-list{
-        max-height: 480px;
+        max-height: 500px;
         overflow-y: scroll;
     }
 }
