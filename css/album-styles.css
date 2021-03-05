@@ -402,6 +402,6 @@ and (min-device-width: 900px)
 and (orientation: landscape)
 {
     div#song-list{
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }
