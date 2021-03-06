@@ -108,7 +108,7 @@ ol {
 
 li {
     line-height: 150%;
-	margin: 0.5em 0;
+	margin: 0.6em 0;
 }
 /* blockquote styling */
 
@@ -198,8 +198,29 @@ img#album-cover{
 #song-list blockquote p{
     color:rgba(255, 255, 255, 0.7);
     line-height:100%;
+    font-size: 14px;
 }
 
+div#album-info-container li>em{
+    margin-left: 1em;
+    font-style: normal;
+    color:tomato;
+}
+
+/* scroll-bar */
+#song-list::-webkit-scrollbar {
+    width:6px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 3px;
+}
+
+#song-list::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+}
+
+
+/* album title */
 .album-meta{
     color:white;
 }
@@ -217,6 +238,7 @@ img#album-cover{
     margin-right:.5em;
 }
 
+/* navigation bar */
 div#navigation{
     /* position: fixed; */
     width:100%;
@@ -233,7 +255,7 @@ div#buttons{
 
 a#next{
     flex:initial;
-    padding:7px 6px;
+    padding:4px 6px;
     width:20px;
     text-align: right;
 }
@@ -242,7 +264,7 @@ span{
 }
 a#prev{
     flex:initial;
-    padding:7px 6px;
+    padding:4px 6px;
     width:20px;
 }
 
@@ -253,12 +275,6 @@ div#navigation a{
 
 div#navigation a:hover{
     color:white;
-}
-
-div#album-info-container li>em{
-    margin-left: 1em;
-    font-style: normal;
-    color:tomato;
 }
 
 
@@ -319,7 +335,6 @@ and (min-device-width:451px){
     
     .album-artist{
         display: inline-block;
-        margin-right:.5em;
     }
 
     div#navigation{
@@ -387,7 +402,6 @@ and (max-device-width:450px){
     
     .album-artist{
         display: inline-block;
-        margin-left:.5em;
     }
 
     div#song-list{
