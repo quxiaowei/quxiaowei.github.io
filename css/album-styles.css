@@ -1,13 +1,10 @@
 /* single-column styling */
 /* general background styling */
-
 * { padding: 0; margin: 0; }
-
 html{
     height: 100%;
     background-color: white;/*#E8F2FD*/; /*#f6f9fa;*/ /*ededed;*/
 }
-
 body {
     min-height: 100%;
     line-height: 150%;
@@ -18,31 +15,23 @@ body {
     "Helvetica Neue","PingFang-SC-Regular","STHeiti",
     "Helvetica","Arial","Verdana","sans-serif","苹方","宋体","Microsoft YaHei";
 }
-
 .column {
     width: 100%;
     max-width: 760px;
     min-height: 100%;
-
     margin: 0px auto;
-
     padding: 0px 20px 20px;
     padding-bottom: 5px;
-
 	/*border:1px solid rgba(61, 118, 197, 0.05);*/
     border-radius: 3px;
     background-color: white; /*#f5f5f5;*/
     /*background: linear-gradient(to bottom, rgba(232,242,253,1), white 300px, white);*/
-
     /*box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.05);*/
-
     font-family: -apple-system, BlinkMacSystemFont,
     "Helvetica Neue","PingFang-SC-Regular","STHeiti",
     "Helvetica","Arial","Verdana","sans-serif","Microsoft YaHei";
 }
-
 /* title/header styling */
-
 header.header {
     width: 100%;
     padding-bottom: 1.5em;
@@ -53,12 +42,10 @@ header.header {
 	z-index: 50;
 	background-color: rgba(255, 255, 255, 0);
 }
-
 u {
     text-decoration: none;
     border-bottom: 1px solid #777;
 }
-
 .title {
     /* font-family: "Roboto Mono", Helvetica, serif; */
     font-size: 28px;
@@ -68,52 +55,40 @@ u {
 	color: black;/*rgb(55,173,112)*/;
 	text-decoration:none;
 }
-
 .site-description {
     font-size: 12px;
     color:#76B9F2;
 	color:black;
 }
-
 /* general paragraph styling */
 p {
     line-height: 150%;
 }
-
 /* image styling */
-
 /* link styling */
-
 a {
     text-decoration: underline;
     color: inherit;
 }
-
 a:hover {
     color: #242C55;
 	color: black;
 }
-
 /* list styling */
-
 ul {
     margin-left: 20px;
     list-style-type: circle;
 }
-
 ol {
     margin-left: 2em;
     list-style-type: decimal;
 }
-
 li {
     line-height: 150%;
 	margin: 0.6em 0;
 }
 /* blockquote styling */
-
 /* hr/bar styling */
-
 hr {
     margin-bottom: 1.5em;
     margin-top: 1.5em;
@@ -121,14 +96,12 @@ hr {
     height: 0;
     border-top: 1px dashed #aaa;
 }
-
 h2 {
     font-family: Helvetica, sans-serif;
 	font-size: 16px;
 	margin:2em 0 1em;
 	letter-spacing: 0.2em;
 }
-
 h4 {
     padding: 1.5em 0 0.8em;
     margin-bottom: 0.8em;
@@ -136,18 +109,15 @@ h4 {
 	font-size:18px;
 	font-weight:normal;
 }
-
 body{
     display: flex;
     align-items: center;
 }
-
 section#album-info-section{
     margin-top: 10px;
     display: flex;
     /* align-items: center; */
 }
-
 #album-container{
     margin-left: auto;
     margin-right:auto;
@@ -155,17 +125,14 @@ section#album-info-section{
     color:white;
     overflow: auto;;
 }
-
 div#album-cover-container{
     width:49%;
     display: inline-block;
 }
-
 div#album-info-container{
     width:49%;
     display: inline-block;
 }
-
 div#album-cover-container>div{
     margin-left: auto;
     margin-right:5px;
@@ -173,7 +140,6 @@ div#album-cover-container>div{
     min-width:200px;
     padding:10px;
 }
-
 div#album-info-container>div{
     margin-left: 5px;
     margin-right:auto;
@@ -181,63 +147,52 @@ div#album-info-container>div{
     min-width:200px;
     padding:10px;
 }
-
 img#album-cover{
     width:100%;
     margin:0;
     border-radius: 8px;
     box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
 }
-
 #song-list {
     color:white;
     height:480px;
     overflow-y: auto;
 }
-
 #song-list blockquote p{
     color:rgba(255, 255, 255, 0.7);
     line-height:100%;
     font-size: 14px;
 }
-
 div#album-info-container li>em{
     margin-left: 1em;
     font-style: normal;
     color:tomato;
 }
-
 /* scroll-bar */
 #song-list::-webkit-scrollbar {
     width:6px;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 3px;
 }
-
 #song-list::-webkit-scrollbar-thumb{
     background-color: rgba(0, 0, 0, 0.25);
     border-radius: 3px;
 }
-
-
 /* album title */
 .album-meta{
     color:white;
 }
-
 .album-title{
     font-size:20px;
     font-weight: bold;
     color:white;
 }
-
 .album-artist{
     font-size:20px;
     color:rgba(255, 255, 255, 0.7);
     display: inline-block;
-    margin-right:.5em;
+    margin-right:0.5em;
 }
-
 /* navigation bar */
 div#navigation{
     /* position: fixed; */
@@ -245,14 +200,12 @@ div#navigation{
     height:20px;
     color:rgba(255, 255, 255, 0.5);
 }
-
 div#buttons{
     width:100%;
     margin: 0 auto ;
     display: flex;
     flex-direction: row;
 }
-
 a#next{
     flex:initial;
     padding:4px 6px;
@@ -267,51 +220,41 @@ a#prev{
     padding:4px 6px;
     width:20px;
 }
-
 div#navigation a{
     text-decoration: none;
     color:rgba(255, 255, 255, 0.5);
 }
-
 div#navigation a:hover{
     color:white;
 }
 
-
 @media screen
 and (max-device-width:900px)
 and (min-device-width:451px){
-
     div#navigation{
         position: fixed;
     }
-
     body{
         width:100%;
         align-items:unset;
     }
-
     section#album-info-section{
         display: block;
         align-items:unset;
     }
-
     #album-container{
         margin-left:0px;
         margin-right:0px;
         color:white;
     }
-
     div#album-cover-container{
         width:100%;
         display: block;
     }
-
     div#album-info-container{
         width:100%;
         display: block;
     }
-    
     div#album-cover-container>div{
         margin-left:auto;
         margin-right:auto;
@@ -319,7 +262,6 @@ and (min-device-width:451px){
         width: 400px;
         padding-bottom:10px;
     }
-
     div#album-info-container>div{
         margin-left:auto;
         margin-right:auto;
@@ -327,94 +269,77 @@ and (min-device-width:451px){
         width: 400px;
         padding-top:10px;
     }
-
     .album-title{
         display: inline-block;
         margin-right:0.5em
     }
-    
     .album-artist{
         display: inline-block;
     }
-
     div#navigation{
         display: flex;
     }
-
     div#song-list{
         height:auto;
         max-height: none;
         overflow-y: auto;
     }
 }
-
 @media screen
 and (max-device-width:450px){
-
     div#navigation{
         position: fixed;
     }
-
     body{
         width:100%;
         align-items:unset;
     }
-
     section#album-info-section{
         display: block;
         align-items:unset;
     }
-
     #album-container{
         width:100%;
         margin-left:0px;
         margin-right:0px;
         color:white;
     }
-
     div#album-cover-container{
         width:100%;
         display: block;
     }
-    
     div#album-info-container{
         width:100%;
         display: block;
     }
-
     div#album-cover-container>div{
         margin-left:auto;
         margin-right:auto;
         padding:30px;
         padding-bottom:10px;
     }
-    
     div#album-info-container>div{
         margin-left:auto;
         margin-right:auto;
         padding:30px;
         padding-top:10px;
     }
-
     .album-title{
         display: inline-block;
+        margin-right:0.5em
     }
-    
     .album-artist{
         display: inline-block;
     }
-
     div#song-list{
         height:auto;
         max-height: none;
         overflow-y: auto;
     }
 }
-
 @media screen 
 and (min-device-width: 900px)
-and (orientation: landscape)
-{
+and (orientation: landscape) {
     div#song-list{
         overflow-y: auto;
     }
