@@ -341,9 +341,12 @@ and (max-width:450px){
     }
 }
 @media screen 
-and (min-width: 700px)
-and (orientation: landscape) {
+and (min-width: 700px) {
     div#song-list{
         overflow-y: auto;
+    }
+    section#album-info-section{
+        padding-left:30px;
+        padding-right:20px;
     }
 }
