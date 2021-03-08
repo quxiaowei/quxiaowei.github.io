@@ -229,7 +229,7 @@ div#navigation a:hover{
 }
 
 @media screen
-and (max-width:900px)
+and (max-width:700px)
 and (min-width:451px){
     div#navigation{
         position: fixed;
@@ -341,7 +341,7 @@ and (max-width:450px){
     }
 }
 @media screen 
-and (min-width: 900px)
+and (min-width: 700px)
 and (orientation: landscape) {
     div#song-list{
         overflow-y: auto;
