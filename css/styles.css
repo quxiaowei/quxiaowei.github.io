@@ -137,8 +137,7 @@ header.post-header .post-title {
 
 .post-meta {
     font-size: 13px;
-    color: #242C55;
-	color:black;
+    color: grey;
 	font-family: Helvetica, "PingFang-SC-Regular", sans-serif;
     margin-top:-5px;
 }
@@ -190,7 +189,6 @@ a {
 a:hover {
     color: #242C55;
 	color: black;
-	text
 }
 
 /* list styling */
@@ -507,7 +505,8 @@ article#content{
 	font-size: 16px;
 	font-weight: bold;
 	color:#242C55;
-	color:black
+	color:black;
+    margin-bottom: 5px;
 }
 
 .post-title a{
@@ -526,10 +525,10 @@ header.post-header .post-title {
 
 .post-meta {
     font-size: 13px;
-    color: #242C55;
-	color:black;
+    color: grey;
 	font-family: Helvetica, "PingFang-SC-Regular", sans-serif;
     margin-top:-5px;
+    margin-bottom: 0px;
 }
 
 header.post-header .post-meta {
@@ -579,7 +578,6 @@ a {
 a:hover {
     color: #242C55;
 	color: black;
-	text
 }
 
 /* list styling */
