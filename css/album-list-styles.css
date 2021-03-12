@@ -1,12 +1,9 @@
 /* single-column styling */
 /* general background styling */
-
 * { padding:0; margin:0; }
-
 html{
     height:100%;
 }
-
 body {
     background-color:whitesmoke;
     min-height:100%;
@@ -16,24 +13,20 @@ body {
 	-apple-system, BlinkMacSystemFont,
     "Helvetica Neue","PingFang-SC-Regular","STHeiti",
     "Helvetica","Arial","Verdana","sans-serif","苹方","宋体","Microsoft YaHei";
-
     width:100%;
     display:flex;
     align-content:center;
 }
-
 div#album-container{
     width:100%;
     margin-left:auto;
     margin-right:auto;
     display:inline-flex;
 }
-
 h1{
     font-family:'Stick', sans-serif;
     display:inline-flex;
 }
-
 div.thumb-container{
     margin-left:auto;
     margin-right:auto;
@@ -44,29 +37,25 @@ div.thumb-container{
     flex-wrap:wrap;
     align-content:center;
 }
-
 div.thumb-container a.thumb-link{
     line-height:0px;
     display:inline-block;
     position:relative;
 }
-
 div.thumb-container a.thumb-link::after{
     content:"";
-    display: block;
+    display:block;
     width:180px;
     height:180px;
     border-width:1px;
     border-radius:5px;
     margin:15px;
-
     position:absolute;
     top:0;
     left:0;
-    z-index:100;
-    background: radial-gradient(ellipse at top, rgba(255, 255, 255, 24%), transparent 50%);
+    z-index:10;
+    background:radial-gradient(ellipse at top, rgba(255, 255, 255, 24%), transparent 50%);
 }
-
 img.thumb-img{
     width:180px;
     height:180px;
@@ -76,9 +65,8 @@ img.thumb-img{
     border-width:1px;
     border-radius:5px;
     box-shadow:0px 2px 4px 0px rgba(0, 0, 0, 0.15);
-    z-index: 1;
+    z-index:1;
 }
-
 @media screen 
 and (max-width:630px)
 and (min-width:420px) {
@@ -87,7 +75,6 @@ and (min-width:420px) {
         max-width:430px;
     }
 }
-
 @media screen 
 and (max-width:419px) {
     div.thumb-container{
