@@ -22,7 +22,7 @@ section#main {
 }
 .column {
     width:100%;
-    max-width:760px;
+    max-width:700px;
     min-height:100%;
     margin:0px auto;
     padding:0px 20px 20px;
@@ -52,7 +52,7 @@ u {
 }
 .title {
     /* font-family:"Roboto Mono", Helvetica, serif; */
-    font-size:18px;
+    font-size:20px;
 	font-weight:bold;
 	font-family:"Lobster";
 	color:#242C55;
