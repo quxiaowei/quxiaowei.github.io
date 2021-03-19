@@ -1,0 +1,64 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>A.Smith</title><base href=https://quxiaowei.github.io><link rel="shortcut icon" href=/img/favicon-compact.svg type=image/x-icon><link href=https://quxiaowei.github.io/index.xml rel=alternate type=application/rss+xml title="A CodeSmith"><link rel=stylesheet href=https://quxiaowei.github.io/css/bootstrap.min.css><link rel=stylesheet href=https://quxiaowei.github.io/css/styles.css><link rel=stylesheet href=https://quxiaowei.github.io/css/post.css><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Lobster"><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script><script src=./script/site.js></script></head><body><div class="column container"><header class=header><a href=/ class=title>A.Smith</a></header><section id=main class=col-md-12><header class=post-header><p class=post-title>GIT cheatsheet</p><p class=post-meta>2021-3-19</p></header><article itemprop=articleBody id=content><blockquote><p>最近又开始捣鼓这个闲置多年的博客。期间用 git 出现了些问题。平时用不到 git 重新简单学习了下，发现很好玩。整理了常用命令，以备后续查看。 后面的维护，会尽量尝试 git 工具和技巧，也会添加新内容进来。</p><p>参考 <a href=https://git-scm.com/book/en/v2/>GIT-BOOK</a></p><p>帮助命令 <code>git xxx -h</code></p></blockquote><hr><h5 id=git-初始化>GIT 初始化</h5><pre><code>~ git init
+</code></pre><hr><h5 id=status>Status</h5><pre><code>~ git status -s
+| ??  untracked_file.md
+| A_  staged_new_file.md
+| _M  untracked_modified.md
+| _M  staged_modified.md
+| MM  staged_and_unstaged_modified.md
+| └╂───────staged
+|  ┗━━━━━━━unstaged
+</code></pre><hr><h5 id=add--commit--restore>Add & Commit & Restore</h5><pre><code>~ git add content/post/git_cheatsheet.d
+~ git add -A
+~ git commit -m &quot;commit message&quot;
+~ git restore [file]
+~ git restore --staged [file]
+~ git commit -m &quot;new post&quot;
+~ git commit --amend
+</code></pre><hr><h5 id=diff>Diff</h5><pre><code>~ git diff                  # unstaged and staged
+~ git diff file             # compare file
+~ git diff --staged         # staged and commited 
+~ git diff branch-name      # HEAD and branch
+~ git diff origin/main      # HEAD and origin/main
+~ git diff HEAD~1           # HEAD and previous commit
+~ git diff branch01 branch02 # branch and branch
+~ git difftool
+</code></pre><hr><h5 id=log--show>Log & Show</h5><pre><code>~ git log
+~ git log --stat
+~ git log --oneline
+~ git log --graph --oneline --decorate --all  
+# branch graphic
+
+~ git show c557fdf
+~ git show HEAD~1
+~ git show HEAD~1:filename
+</code></pre><hr><h5 id=remote>Remote</h5><pre><code>~ git remote add origin https://github.com/xxx/xxx.git  
+# add new remote named as origin
+~ git clone https://github.com/xxx/xxx.git      
+# copy from server
+~ git fetch origin main     
+# fetch from remote [origin] branch [main]
+~ git pull origin main      
+# fetch and merge from remote [origin] branch [main]
+~ git push origin main      
+# push local to remote [origin] branch [main]
+</code></pre><hr><h5 id=branch>Branch</h5><pre><code>~ git branch --all          # show new branch
+~ git branch new-branch     # create new branch
+~ git switch new-branch     # switch to brance
+~ git branch -d new-branch  # delete branch
+~ git push -u origin new-branch # push branch to remote 
+~ git switch main
+~ git merge branch          # mergin branch to main
+~ git mergetool
+</code></pre><hr><h5 id=config>Config</h5><pre><code>~ git config --global -e    # 打开 config
+~ git config --global core.editor &quot;code --wait&quot;
+~ git config --global merge.tool vscode
+~ git config --global mergetool.vscode.cmd &quot;code --wait $MERGED&quot;
+~ git config --global diff.tool vscode
+~ git config --global difftool.vscode.cmd &quot;code --wait --diff $LOCAL $REMOTE&quot;
+
+~ git config --global core.autocrlf true    
+# for win: lf&gt;crlf when pull; crlf&gt;lf when push;
+
+~ git config --global core.autocrlf input   
+# for mac and linux: crlf&gt;lf when pull;
+</code></pre><p>『 終 』</p></article></section><footer class=bottom-footer></footer><script>renderMathInElement(document.getElementById('main'));</script></div><a href=javascript: id=return-to-top><i class=icon-chevron-up></i></a><link href=//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css rel=stylesheet></body></html>
