@@ -81,12 +81,21 @@ ul {
     list-style-type:circle;
 }
 ol {
-    margin-left:2em;
     list-style-type:decimal;
 }
 li {
     line-height:150%;
 	margin:0.6em 0;
+    list-style-type: none;
+}
+li span.num{
+    display: inline-block;
+    width:1.5em;
+    text-align: right;
+    height:100%;
+}
+li span.right{
+    margin-right:.3em;
 }
 /* blockquote styling */
 /* hr/bar styling */
@@ -172,11 +181,12 @@ div#album-info-container>div{
     overflow-y:auto;
 }
 #song-list blockquote p{
+    padding-left:34px;
     color:rgba(255, 255, 255, 0.7);
     line-height:100%;
     font-size:14px;
 }
-div#album-info-container li>em{
+div#album-info-container li em{
     margin-left:1em;
     font-style:normal;
     color:tomato;
