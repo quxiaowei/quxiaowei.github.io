@@ -186,6 +186,11 @@ div#album-info-container>div{
     line-height:100%;
     font-size:14px;
 }
+
+div#album-info-container .bonus{
+    color:rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+}
 div#album-info-container li em{
     margin-left:1em;
     font-style:normal;
@@ -212,6 +217,12 @@ div#album-info-container li em{
 }
 .album-artist{
     font-size:20px;
+    color:rgba(255, 255, 255, 0.7);
+    display:inline-block;
+    margin-right:0.5em;
+}
+.album-medium{
+    font-size:8px;
     color:rgba(255, 255, 255, 0.7);
     display:inline-block;
     margin-right:0.5em;
