@@ -3,7 +3,7 @@
 * { padding:0; margin:0; }
 html{
     height:100%;
-    background-color:white;/*#E8F2FD*/; /*#f6f9fa;*/ /*ededed;*/
+    background-color：#fff;
 }
 body {
     min-height:100%;
@@ -160,7 +160,7 @@ div#album-cover-container>div::after{
     top:0;
     left:0;
     z-index:50;
-    background:radial-gradient(ellipse at top, rgba(255, 255, 255, 15%), transparent 60%);
+    background:radial-gradient(ellipse at top, rgba(255, 255, 255, 15%), transparent 40%);
 }
 img#album-cover{
     width:100%;
