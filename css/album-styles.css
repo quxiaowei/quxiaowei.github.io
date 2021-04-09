@@ -258,6 +258,13 @@ a#next{
 span{
     flex:auto;
 }
+#disc2, #disc3, .disc4 {
+    display: none;
+}
+.disc2, .disc3, .disc4 {
+    display: none;
+}
+
 @media screen
 and (max-width:700px)
 and (min-width:451px){
