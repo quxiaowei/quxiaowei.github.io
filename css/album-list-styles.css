@@ -32,7 +32,7 @@ div.thumb-container{
     margin-right:auto;
     margin-top:45px;
     padding-bottom: 15px;
-    max-width:630px;
+    max-width:840px;
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;
@@ -69,16 +69,26 @@ img.thumb-img{
     box-shadow:0px 2px 4px 0px rgba(0, 0, 0, 0.15);
     z-index:1;
 }
+
+@media screen 
+and (max-width:840px)
+and (min-width:630px) {
+    div.thumb-container{
+        margin-top:auto;
+        max-width:630px;
+    }
+}
+
 @media screen 
 and (max-width:630px)
 and (min-width:420px) {
     div.thumb-container{
         margin-top:auto;
-        max-width:430px;
+        max-width:420px;
     }
 }
 @media screen 
-and (max-width:419px) {
+and (max-width:420px) {
     div.thumb-container{
         margin-top:auto;
         max-width:210px;
