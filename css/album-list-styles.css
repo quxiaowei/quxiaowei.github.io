@@ -60,7 +60,7 @@ div.thumb-container a.thumb-link::after{
     top:0;
     left:0;
     z-index:10;
-    background:radial-gradient(ellipse at top, rgba(255, 255, 255, 24%), transparent 40%);
+    background:radial-gradient(ellipse at top, rgba(255, 255, 255, 10%), transparent 60%);
 }
 img.thumb-img{
     width:180px;
