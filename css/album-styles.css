@@ -227,6 +227,12 @@ div#album-info-container li em{
     display:inline-block;
     margin-right:0.5em;
 }
+.album-desc{ 
+    text-indent: 2em;
+    margin-top:20px;
+    font-size:8px;
+    color:rgba(255, 255, 255, 0.7); 
+}
 /* navigation bar */
 div#navigation{
     /* position:fixed; */
