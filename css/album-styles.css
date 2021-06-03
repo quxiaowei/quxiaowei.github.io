@@ -9,7 +9,7 @@ body {
     min-height:100%;
     line-height:150%;
     color:#333;
-    font-size:16px;
+    font-size:14px;
     font-family:
 	-apple-system, BlinkMacSystemFont,
     "Helvetica Neue","PingFang-SC-Regular","STHeiti",
@@ -211,12 +211,12 @@ div#album-info-container li em{
     color:white;
 }
 .album-title{
-    font-size:20px;
+    font-size:16px;
     font-weight:bold;
     color:white;
 }
 .album-artist{
-    font-size:20px;
+    font-size:16px;
     color:rgba(255, 255, 255, 0.7);
     display:inline-block;
     margin-right:0.5em;
@@ -230,7 +230,7 @@ div#album-info-container li em{
 .album-desc{ 
     text-indent:2em;
     margin-top:20px;
-    font-size:12px;
+    font-size:14px;
     color:rgba(255, 255, 255, 0.7); 
 }
 /* navigation bar */
